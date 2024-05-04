@@ -1,0 +1,5 @@
+operation: https :// github.com/remla23 -teamXX (Update with link to tag)
+model training: ... (Update with link to tag)
+
+## Comments for A1:
+We did not implement the X subtask. For Y, you can find more information at ...
