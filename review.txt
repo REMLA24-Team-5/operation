@@ -1,5 +1,20 @@
-operation: https :// github.com/remla23 -teamXX (Update with link to tag)
-model training: ... (Update with link to tag)
+## Relevant links:
+- operation: https :// github.com/remla23 -teamXX (Update with link to tag)
+- model training: ... (Update with link to tag)
 
 ## Comments for A1:
-We did not implement the X subtask. For Y, you can find more information at ...
+Below we specify all the things we have implemented for each section.
+# Project best practices: 
+- we have split the code into different files and structed the repository using the data science template of cookie cutter
+- the requirements.txt allows for installation of the correct dependencies (UPDATE IF CHANGED)
+- the dataset is automatically downloaded as part of the dvc pipeline (UPDATE IF CHANGED)
+- exploratory code has been removed from python files and is only visible in the `notebooks` folder
+- the README includes the steps as to how to use our repository
+
+# Pipeline Management:
+- the pipeline can be run with `dvc repro`
+- a remote storage has been configured using Google Drive
+- metrics are used to keep track of model performance (UPDATE)
+
+# Code Quality
+- TODO
