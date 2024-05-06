@@ -12,5 +12,5 @@ Created PR: https://github.com/REMLA24-Team-5/Model-Training/pull/18
 Approved PR: https://github.com/REMLA24-Team-5/Model-Training/pull/17
 
 -- Jurrian: --
-Created PR: ...
-Approved PR: ...
+Created PR: https://github.com/REMLA24-Team-5/Model-Training/pull/17
+Approved PR: https://github.com/REMLA24-Team-5/Model-Training/pull/9

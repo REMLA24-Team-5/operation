@@ -1,15 +1,16 @@
 ## Relevant links:
-- operation: https :// github.com/remla23 -teamXX (Update with link to tag)
-- model training: ... (Update with link to tag)
+- operation: https https://github.com/REMLA24-Team-5/operation/tree/a1
+- model training: https://github.com/REMLA24-Team-5/Model-Training/tree/a1
 
 ## Comments for A1:
 Below we specify all the things we have implemented for each section.
 # Project best practices: 
 - we have split the code into different files and structed the repository using the data science template of cookie cutter
 - Poetry allows for installation of the correct dependencies.
-- the dataset is automatically downloaded as part of the dvc pipeline (UPDATE IF CHANGED)
+- the dataset is automatically downloaded as part of the dvc pipeline
 - exploratory code has been removed from python files and is only visible in the `notebooks` folder
 - the README includes the steps as to how to use our repository
+- all decisions are properly documented in the Readme.
 
 # Pipeline Management:
 - the pipeline can be run with `dvc repro`
