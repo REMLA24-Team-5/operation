@@ -3,7 +3,7 @@
 - model training: https://github.com/REMLA24-Team-5/Model-Training/tree/a1
 
 ## Comments for A1:
-Below we specify all the things we have implemented for each section.
+Below we specify all the things we have implemented for each section. The model training repository contains all the code (link above).
 # Project best practices: 
 - we have split the code into different files and structed the repository using the data science template of cookie cutter
 - Poetry allows for installation of the correct dependencies.
