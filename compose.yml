@@ -1,0 +1,9 @@
+services:
+  model-service:
+    ports:
+      - "8000:8000"
+    image: "ghcr.io/guthax/model-service:latest"
+  app:
+    ports:
+      - "5000:5000"
+    image: "ghcr.io/guthax/app:latest"
