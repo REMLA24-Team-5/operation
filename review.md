@@ -31,10 +31,10 @@ Below we specify all the things we have implemented for each section. The model 
 ## Relevant links:
 - operation: https://github.com/REMLA24-Team-5/operation/tree/a2
 - model training: https://github.com/REMLA24-Team-5/Model-Training/tree/a2
-- model service: https://github.com/REMLA24-Team-5/model-service/tree/a2
-- lib-ml: https://github.com/REMLA24-Team-5/lib-ml/tree/a2
+- model service: https://github.com/REMLA24-Team-5/model-service/tree/v0.0.10
+- lib-ml: https://github.com/REMLA24-Team-5/lib-ml/tree/v0.1.2
 - app: https://github.com/REMLA24-Team-5/app/tree/a2
-- lib-version: https://github.com/REMLA24-Team-5/lib-version/tree/a2
+- lib-version: https://github.com/REMLA24-Team-5/lib-version/tree/v0.1.5
 
 ## Comments:
 Below we specify all the things we have implemented for each section. The model training repository contains all the code (link above).
