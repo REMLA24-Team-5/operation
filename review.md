@@ -41,22 +41,29 @@ Below we specify all the things we have implemented for each section. The model 
 
 ### Data availability
 #### Setup of the GitHub Organization
-- [TODO] the README contains all information to find and start the application
+- The README contains all information to find and start the application, however the docker compose up fails as the connection to the model-service image is not finalized.
 
 ### Versioning and Releases
 #### Automated Release Process
-- All artifacts are released using the Git tag and automatically versioned 
+- All artifacts are released using the Git tag and automatically versioned
+- The packaging and releases of all artifacts are performed in workflows.
+- Release workflows automatically version all artifacts through using a Git release tag like v1.2.3.
+- Patch versions are automatically increased for both lib packages, bumps to minor or major versions remain manual.
 
 #### Software Reuse in Libraries
-- [TODO] Both libraries (`lib-ml` and `lib-version`) have been released such that they can be reused in other applications
-- `lib-ml` is reused in both `model-training` and `model-service`
+- Both libraries (`lib-ml` and `lib-version`) have been released such that they can be reused in other applications
+- `lib-ml` contains meaningful data structures or logic that is used in both `model-training` and `model-service`
+- The version string in lib-version is automatically updated with the actual package version in the release workflow, i.e., it is taken from the pyproject.toml file.
+
 
 ### Containers and Orchestration
 #### Exposing a Model via REST
-- [TODO]
+- Flask is used to serve the model. A container image gets built and released in a workflow.
+- The model-service pre-processes queries the same was as in the training pipeline.
+- The model that is served can be updated without creating a new image, i.e., it is downloaded on-start.
 
 #### Sensible Use Case
-- [TODO]
+- The app-service uses the model-service through REST. The microservice uses the version-aware lib-version through a package manager. The application has a basic frontend that allows to query the model (”a textbox with a button”) but it fails in showing the result for now.
 
 #### Docker Compose Operation
-- [TODO]
+- The operation repository contains a docker-compose.yml file that allows to start up the application and use it but it does not work for now.
