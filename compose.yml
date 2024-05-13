@@ -2,8 +2,8 @@ services:
   model-service:
     ports:
       - "8000:8000"
-    image: "ghcr.io/guthax/model-service:latest"
+    image: "ghcr.io/remla24-team-5/model-service:latest"
   app:
     ports:
       - "5000:5000"
-    image: "ghcr.io/guthax/app:latest"
+    image: "ghcr.io/remla24-team-5/app:latest"
