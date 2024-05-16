@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   end
   
   # setup n_workers number of worker nodes
-  n_workers = 1
+  n_workers = 2
   (1..n_workers).each do |i|
     config.vm.define "node#{i}" do |worker|
       worker.vm.box = "bento/ubuntu-24.04"
