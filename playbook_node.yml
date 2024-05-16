@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install nginx
+      apt: name=nginx state=present
+    - name: (Auto-) Start Nginx
+      service: name=nginx state=started enabled=false
+    - name: Replace the Homepage Title
+      ansible.builtin.lineinfile:
+        path: /var/www/html/index.nginx-debian.html
+        regexp: '^<h1>Welcome to '
+        line: |
+          <h1>Welcome to the REMLA course!</h1>
