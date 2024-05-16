@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: workers
   become: yes
   tasks:
     - name: Install nginx
@@ -11,4 +11,4 @@
         path: /var/www/html/index.nginx-debian.html
         regexp: '^<h1>Welcome to '
         line: |
-          <h1>Welcome to the REMLA course!</h1>
+          <h1>a worker node</h1>
