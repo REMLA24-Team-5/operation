@@ -30,8 +30,8 @@ Vagrant.configure("2") do |config|
       worker.vm.network "private_network", ip: "192.168.56.#{i+10}"
 
       worker.vm.provider "virtualbox" do |vb|
-        vb.memory = 4096
-        vb.cpus = 1
+        vb.memory = 6144
+        vb.cpus = 2
       end
 
       worker.vm.provision "ansible" do |ansible|
