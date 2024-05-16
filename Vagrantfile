@@ -1,6 +1,20 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Define the number of worker nodes
+n_workers = 2
+
+# Run script to create inventory file
+File.open("inventory.ini", "w") do |file|
+  file.write("[controllers]\n")
+  file.write("controller ansible_host=192.168.56.10\n")
+  file.write("\n")
+  file.write("[workers]\n")
+  (1..n_workers).each do |i|
+    file.write("node#{i} ansible_host=192.168.56.#{i+10}\n")
+  end
+end
+
 Vagrant.configure("2") do |config|
   # setup control node
   config.vm.define "controller" do |control|
@@ -16,12 +30,12 @@ Vagrant.configure("2") do |config|
     
     control.vm.provision "ansible" do |ansible|
       ansible.compatibility_mode = "2.0"
+      ansible.inventory_path = "inventory.ini"
       ansible.playbook = "playbook_controller.yml"
     end
   end
   
   # setup n_workers number of worker nodes
-  n_workers = 2
   (1..n_workers).each do |i|
     config.vm.define "node#{i}" do |worker|
       worker.vm.box = "bento/ubuntu-24.04"
@@ -36,6 +50,7 @@ Vagrant.configure("2") do |config|
 
       worker.vm.provision "ansible" do |ansible|
         ansible.compatibility_mode = "2.0"
+        ansible.inventory_path = "inventory.ini"
         ansible.playbook = "playbook_node.yml"
       end
     end
