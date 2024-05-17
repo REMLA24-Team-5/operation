@@ -1,0 +1,8 @@
+---
+- name: Install Helm and Deploy Monitoring Tools
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Download and install Helm
+      debug:
+        msg: "TODO"
