@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     control.vm.box = "bento/ubuntu-22.04"
     control.vm.box_version = "202404.23.0"
     control.vm.hostname = "controller"
-    config.vm.network "private_network", ip: "192.168.56.10"
+    control.vm.network "private_network", ip: "192.168.56.10"
 
     config.vm.provider "virtualbox" do |vb|
       vb.memory = 4096
