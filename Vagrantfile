@@ -23,9 +23,9 @@ Vagrant.configure("2") do |config|
     control.vm.hostname = "controller"
     control.vm.network "private_network", ip: "192.168.56.10"
 
-    config.vm.provider "virtualbox" do |vb|
+    control.vm.provider "virtualbox" do |vb|
       vb.memory = 4096
-      vb.cpus = 2 # had issues running with 1
+      vb.cpus = 1 # had issues running with 1
     end
     
     # setup controller with ansible playbook
