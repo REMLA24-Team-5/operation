@@ -67,14 +67,14 @@ Vagrant.configure("2") do |config|
       worker.vm.provision "ansible" do |ansible|
         ansible.compatibility_mode = "2.0"
         ansible.inventory_path = "inventory.ini"
-        ansible.playbook = "playbook/setup_general.yml"
+        ansible.playbook = "playbooks/setup_general.yml"
       end
 
       # join worker node in cluster
       worker.vm.provision "ansible" do |ansible|
         ansible.compatibility_mode = "2.0"
         ansible.inventory_path = "inventory.ini"
-        ansible.playbook = "playbook/node.yml"
+        ansible.playbook = "playbooks/node.yml"
       end
     end
   end
