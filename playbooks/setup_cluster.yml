@@ -11,6 +11,7 @@
 
     - name: Apply Kubernetes YAML files
       shell: |
+        kubectl apply -f kubernetes/environment.yaml
         kubectl apply -f kubernetes/Deployment.yaml
         kubectl apply -f kubernetes/Service.yaml
         kubectl apply -f kubernetes/Ingress.yaml
