@@ -3,6 +3,17 @@
   hosts: workers
   become: yes
   tasks:
-    - name: TODO
+    - name: Join the worker to the Minikube cluster
+      command: minikube node add --worker
+      register: join_result
+      until: join_result is succeeded
+      retries: 3
+      delay: 10
+
+    - name: Verify Minikube nodes
+      command: kubectl get nodes
+      register: nodes_status
+
+    - name: Print nodes status
       debug:
-        msg: "TODO"
+        var: nodes_status.stdout
