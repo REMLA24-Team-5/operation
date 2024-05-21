@@ -10,6 +10,7 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -21,3 +22,4 @@ spec:
   ports:
     - port: 8000
       targetPort: 8000
+  type: LoadBalancer
