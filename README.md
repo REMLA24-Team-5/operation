@@ -5,13 +5,20 @@ First the steps to run the application are listed, then the project contents are
 
 ## Running the application
 
-Run the following command to run the application
-to run, login to github package repository and compose containers:
+To run using Docker, login to github package repository and compose containers:
 
 ```
 docker login https://ghcr.io
 docker compose up
 ```
+
+To run a Kubernetes cluster in the VMs, run the following command:
+
+```
+vagrant up
+```
+
+DISCLAIMER: this does not work currently [21-5-2024]
 
 ## The project
 The project concerns the training and deployment of a Phishing URL detector as a web application. The project consists of multiple repositories, each with their own focus, working together to create the full application. The architecture looks as follows:
