@@ -4,6 +4,8 @@ services:
       - "8000:8000"
     image: "ghcr.io/remla24-team-5/model-service:latest"
   app:
+    environment:
+        - model_service_url=http://172.17.0.1:8000
     ports:
       - "5000:5000"
     image: "ghcr.io/remla24-team-5/app:latest"
