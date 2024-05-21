@@ -11,7 +11,7 @@
 
     - name: Apply Kubernetes YAML files
       shell: |
-        kubectl apply -f kubernetes/environment.yaml
-        kubectl apply -f kubernetes/Deployment.yaml
-        kubectl apply -f kubernetes/Service.yaml
-        kubectl apply -f kubernetes/Ingress.yaml
+        minikube kubectl -- apply -f vagrant/kubernetes/environment.yaml
+        minikube kubectl -- apply -f vagrant/kubernetes/Deployment.yaml
+        minikube kubectl -- apply -f vagrant/kubernetes/Service.yaml
+        minikube kubectl -- apply -f vagrant/kubernetes/Ingress.yaml

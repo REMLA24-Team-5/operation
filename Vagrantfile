@@ -16,6 +16,7 @@ File.open("inventory.ini", "w") do |file|
 end
 
 Vagrant.configure("2") do |config|
+  config.vm.provision "file", source: "kubernetes", destination: "$HOME/vagrant"
   # --- Control Node ---
   config.vm.define "controller" do |control|
     control.vm.box = "bento/ubuntu-22.04"
@@ -25,7 +26,7 @@ Vagrant.configure("2") do |config|
 
     control.vm.provider "virtualbox" do |vb|
       vb.memory = 4096
-      vb.cpus = 1 # had issues running with 1
+      vb.cpus = 2 # had issues running with 1
     end
     
     # setup controller with ansible playbook
@@ -35,7 +36,7 @@ Vagrant.configure("2") do |config|
       ansible.playbook = "playbooks/setup_general.yml"
     end
 
-    # setup cluster
+    # setup clustera
     control.vm.provision "ansible" do |ansible|
       ansible.compatibility_mode = "2.0"
       ansible.inventory_path = "inventory.ini"
@@ -79,3 +80,4 @@ Vagrant.configure("2") do |config|
     end
   end
 end
+
