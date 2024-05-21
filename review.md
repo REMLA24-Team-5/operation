@@ -37,7 +37,7 @@ Below we specify all the things we have implemented for each section. The model 
 - lib-version: https://github.com/REMLA24-Team-5/lib-version/tree/v0.1.5
 
 ## Comments:
-Below we specify all the things we have implemented for each section. The model training repository contains all the code (link above).
+Below we specify all the things we have implemented for each section.
 
 ### Data availability
 #### Setup of the GitHub Organization
@@ -55,7 +55,6 @@ Below we specify all the things we have implemented for each section. The model 
 - `lib-ml` contains meaningful data structures or logic that is used in both `model-training` and `model-service`
 - The version string in lib-version is automatically updated with the actual package version in the release workflow, i.e., it is taken from the pyproject.toml file.
 
-
 ### Containers and Orchestration
 #### Exposing a Model via REST
 - Flask is used to serve the model. A container image gets built and released in a workflow.
@@ -67,3 +66,38 @@ Below we specify all the things we have implemented for each section. The model 
 
 #### Docker Compose Operation
 - The operation repository contains a docker-compose.yml file that allows to start up the application and use it but it does not work for now.
+
+# Assignment 3
+## Relevant links:
+- operation: https://github.com/REMLA24-Team-5/operation/tree/a3
+- model training: https://github.com/REMLA24-Team-5/Model-Training/tree/a2
+- model service: https://github.com/REMLA24-Team-5/model-service/tree/v0.1.7
+- lib-ml: https://github.com/REMLA24-Team-5/lib-ml/tree/v0.1.2
+- app: https://github.com/REMLA24-Team-5/app/tree/v0.0.5
+- lib-version: https://github.com/REMLA24-Team-5/lib-version/tree/v0.1.5
+
+## Comments:
+Below we specify all the things we have implemented for each section.
+
+### Provisioning
+#### Setting up (Virtual) Infrastructure
+- All levels have been implemented  
+
+#### Setting up Software Environment
+- The Kubernetes cluster can be started from withing the controller (vagrant ssh controller), however the cluster does not work 
+- The playbook uses built-in modules to achieve idempotent provisioning
+- Inventory and provisioning script differentiate between the control node and the worker nodes
+- Prometheus, Grafana and Kubernetes Dashboard are not yet reachable
+
+### Kubernetes and Monitoring
+#### Kubernetes Usage
+- So far the Kubernetes cluster is not working yet
+- An Deployment.yml, Service.yml and Ingress.yml are present 
+- A ConfigMap is used to store the model-service url
+- Helm chart is not there
+
+#### App monitoring
+- Nothing has been implemented yet
+
+#### Grafana
+- Nothing has been implemented yet
