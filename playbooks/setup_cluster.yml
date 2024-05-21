@@ -9,9 +9,9 @@
     - name: Enable Ingress addon
       command: minikube addons enable ingress
 
-    - name: Apply Kubernetes YAML files
+    - name: Apply Kubernetes yml files
       shell: |
-        minikube kubectl -- apply -f vagrant/kubernetes/environment.yaml
-        minikube kubectl -- apply -f vagrant/kubernetes/Deployment.yaml
-        minikube kubectl -- apply -f vagrant/kubernetes/Service.yaml
-        minikube kubectl -- apply -f vagrant/kubernetes/Ingress.yaml
+        minikube kubectl -- apply -f vagrant/environment.yml
+        minikube kubectl -- apply -f vagrant/Deployment.yml
+        minikube kubectl -- apply -f vagrant/Service.yml
+        minikube kubectl -- apply -f vagrant/Ingress.yml
