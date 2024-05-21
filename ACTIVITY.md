@@ -32,3 +32,16 @@ Approved PR: (https://github.com/REMLA24-Team-5/Model-Training/pull/36)
 -- Jurrian: --
 Created PR: https://github.com/REMLA24-Team-5/app/pull/2
 Approved PR: https://github.com/REMLA24-Team-5/lib-version/pull/4
+
+# A3:
+-- Saga: --
+Created PR: https://github.com/REMLA24-Team-5/operation/pull/31
+Approved PR: https://github.com/REMLA24-Team-5/operation/pull/27
+
+-- Tim: --
+Created PR: https://github.com/REMLA24-Team-5/operation/pull/27
+Approved PR: https://github.com/REMLA24-Team-5/app/pull/18
+
+-- Jurrian: --
+Created PR: https://github.com/REMLA24-Team-5/app/pull/18
+Approved PR: https://github.com/REMLA24-Team-5/operation/pull/31
