@@ -12,6 +12,7 @@ File.open("inventory.ini", "w") do |file|
   file.write("[workers]\n")
   (1..num_workers).each do |i|
     file.write("node#{i} ansible_host=192.168.56.#{i+10} ansible_user=vagrant")
+    file.write("\n")
   end
 end
 
