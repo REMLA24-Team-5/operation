@@ -13,10 +13,6 @@ File.open("inventory.ini", "w") do |file|
   (1..num_workers).each do |i|
     file.write("node#{i} ansible_host=192.168.56.#{i+10} ansible_user=vagrant")
   end
-  # file.write("\n")
-  # file.write("[k8s_cluster:children]\n")
-  # file.write("controller\n")
-  # file.write("workers\n")
 end
 
 # Vagrantfile 
