@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
   # Provisioning with Ansible
   config.vm.provision "ansible" do |ansible|
     ansible.compatibility_mode = "2.0"
-    ansible.playbook = "playbooks/setup_k8s_cluster.yml"
+    ansible.playbook = "playbooks/setup_k3d_cluster.yml"
     ansible.inventory_path = "inventory.ini"
   end
 end

@@ -1,0 +1,55 @@
+---
+- name: Setup Kubernetes Cluster
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Add user to docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Download k3d binary
+      get_url:
+        url: https://github.com/k3d-io/k3d/releases/download/v5.6.3/k3d-linux-amd64
+        dest: /usr/local/bin/k3d
+        mode: '0755'
+
+    - name: Download kubectl
+      shell: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+    - name: Install kubectl "sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl"
+      shell: "sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl"
+
+- name: Create k3d Cluster
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Create k3d cluster
+      command: k3d cluster create mycluster --servers 1 --agents "{{ groups['workers'] | length }}" --api-port 6443 --port 8080:80@loadbalancer
