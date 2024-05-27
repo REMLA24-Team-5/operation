@@ -80,3 +80,33 @@
 
     # - name: Label node as worker
     #   shell: kubectl label nodes {{ ansible_host }} node-role.kubernetes.io/worker=worker
+
+# - name: Install latest istio on controller
+#   hosts: controller
+#   become: yes
+#   tasks:
+#     - name: Install istio
+#       shell: |
+#         curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.22.0 TARGET_ARCH=x86_64 sh -
+#       args:
+#         chdir: /home/vagrant
+#         creates: /home/vagrant/istio-1.22.0
+
+#     - name: Add istioctl to PATH
+#       shell: echo 'export PATH=$PATH:/home/vagrant/istio-1.22.0/bin' >> /home/vagrant/.bashrc
+
+#     - name: Change ownership of istio directory
+#       file:
+#         path: /home/vagrant/istio-1.22.0
+#         owner: vagrant
+#         group: vagrant
+#         recurse: yes
+
+#     - name: Install istio
+#       shell: |
+#         istioctl install
+#       args:
+#         chdir: /home/vagrant/istio-1.22.0
+
+#     - name: Install istio addons 
+#       shell: kubectl apply -f samples/addons/prometheus.yaml
