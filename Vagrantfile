@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # Define the number of worker nodes
-num_workers = 2
+num_workers = 1
 
 # Run script to create inventory file
 File.open("inventory.ini", "w") do |file|
