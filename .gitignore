@@ -1,2 +1,4 @@
 .vagrant
 k3s_token
+k3s.yaml
+inventory.ini
