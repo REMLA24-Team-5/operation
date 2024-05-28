@@ -1,8 +1,0 @@
----
-- name: Join Worker Node to the Cluster
-  hosts: workers
-  become: yes
-  tasks:
-    - name: TODO
-      debug:
-        msg: "TODO"
