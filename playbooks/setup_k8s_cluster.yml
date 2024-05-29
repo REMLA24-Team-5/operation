@@ -71,6 +71,43 @@
         group: vagrant
         mode: '0644'
 
+- name: Install dashboards on control-plane
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Install Helm
+      shell: |
+        curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      args:
+        creates: /usr/local/bin/helm
+
+    - name: Add Helm repositories
+      shell: |
+        helm repo add prom-repo https://prometheus-community.github.io/helm-charts
+        helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+        helm repo update
+    
+    - name: Copy Grafana dashboard ConfigMap to VM
+      copy:
+        content: "{{ lookup('file', './grafana-config.yaml') }}"
+        dest: /home/vagrant/grafana-config.yaml
+
+    - name: Install Prometheus and Grafana
+      shell: |
+        export KUBECONFIG=/home/vagrant/.kube/config
+        kubectl create namespace monitoring
+        kubectl apply -f /home/vagrant/grafana-config.yaml
+        helm install myprom prom-repo/kube-prometheus-stack --namespace monitoring 
+      args:
+        creates: /var/lib/rancher/k3s/server/manifests/prometheus.yaml
+
+    # times out 
+    # - name: Install Kubernetes Dashboard
+    #   shell: |
+    #     helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard 
+    #   args:
+    #     creates: /var/lib/rancher/k3s/server/manifests/kubernetes-dashboard.yaml
+
 - name: Install k3s on worker nodes
   hosts: workers
   become: yes
