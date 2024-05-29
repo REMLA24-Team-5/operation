@@ -10,27 +10,6 @@
         name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
         state: present
 
-    - name: Add Docker GPG key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-
-    - name: Add Docker repository
-      apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-        state: present
-
-    - name: Install Docker
-      apt:
-        name: docker-ce
-        state: present
-
-    - name: Add user to docker group
-      user:
-        name: vagrant
-        groups: docker
-        append: yes
-
 - name: Install k3s on control-plane
   hosts: controller
   become: yes
@@ -109,3 +88,18 @@
     - name: Join worker nodes to the cluster
       shell: |
         curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars['controller'].ansible_host }}:6443 K3S_TOKEN={{ k3s_token['content'] | b64decode | regex_replace('\n', '')}} sh -s - agent --node-ip={{ ansible_host }}
+
+- name: Setup cluster
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Export config
+      shell: |
+        export KUBECONFIG=~/.kube/config
+
+    - name: Apply Kubernetes yml files
+      shell: |
+        kubectl apply -f ./../vagrant/kubernetes/environment.yml
+        kubectl apply -f ./../vagrant/kubernetes/app.yml
+        kubectl apply -f ./../vagrant/kubernetes/model-service.yml
+        kubectl apply -f ../../vagrant/kubernetes/ingress.yml
