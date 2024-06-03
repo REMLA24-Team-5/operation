@@ -101,3 +101,23 @@ Below we specify all the things we have implemented for each section.
 
 #### Grafana
 - Nothing has been implemented yet
+
+# Assignment 4
+## Relevant links:
+- model training: https://github.com/REMLA24-Team-5/Model-Training/tree/a4-final
+
+## Comments:
+Below we specify all the things we have implemented for each section.
+
+[//]: # (This is not really under the right categories)
+#### Testing Framework 
+- We have configured pytest to test all components within the repository, this includes getting data, preprocessing and model definition.
+- We want to increase test coverage for the final submission
+#### Automated Tests
+- Pytest is automatically run when pushing, test statistics are not yet pushed automatically
+
+# Assignment 5
+## Relevant links:
+
+## Comments:
+We did not implement anything for this assignment as we are still stuck on past assignments.
