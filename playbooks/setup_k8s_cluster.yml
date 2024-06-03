@@ -20,6 +20,12 @@
       args:
         creates: /etc/rancher/k3s/k3s.yaml
 
+    - name: Set correct server address in kubeconfig
+      replace:
+        path: /etc/rancher/k3s/k3s.yaml
+        regexp: 'server: https://127.0.0.1:6443'
+        replace: 'server: https://192.168.56.10:6443'
+
     - name: Fetch k3s token to local machine
       fetch:
         src: /var/lib/rancher/k3s/server/node-token
@@ -44,3 +50,14 @@
     - name: Join worker nodes to the cluster
       shell: |
         curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars['controller'].ansible_host }}:6443 K3S_TOKEN={{ k3s_token['content'] | b64decode | regex_replace('\n', '')}} sh -s - agent --node-external-ip={{ ansible_host }}
+
+- name: Setup cluster
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Apply Kubernetes yml files
+      shell: |
+        kubectl apply -f /vagrant/kubernetes/environment.yml
+        kubectl apply -f /vagrant/kubernetes/app.yml
+        kubectl apply -f /vagrant/kubernetes/model-service.yml
+        kubectl apply -f /vagrant/kubernetes/ingress.yml
