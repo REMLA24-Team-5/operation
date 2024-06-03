@@ -29,7 +29,20 @@ or this command when in the cluster
 export KUBECONFIG=/vagrant/playbooks/k3s.yaml
 ```
 
-DISCLAIMER: this does not work currently [21-5-2024]
+## Grafana Dashboard
+To open open Grafana, enter the controller:
+```
+    vagrant ssh controller
+```
+Export the config and look for the services in the monitoring namespace:
+```
+    export KUBECONFIG=/vagrant/playbooks/k3s.yaml
+    kubectl get services --namespace monitoring
+```
+You should look for the grafana port, which you can use to enter Grafana using the ip of the controller node.
+![grafana-port](assets/grafana-port.png)
+You will then be redirected to a login page, where the username and password are both `admin`. Inside Grafana you can create new dashboards or look at our `Custom Metrics Dashboard`, which is loaded from a json file.
+
 
 ## The project
 The project concerns the training and deployment of a Phishing URL detector as a web application. The project consists of multiple repositories, each with their own focus, working together to create the full application. The architecture looks as follows:
