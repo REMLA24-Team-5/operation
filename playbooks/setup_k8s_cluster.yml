@@ -103,3 +103,29 @@
         kubectl apply -f ./../vagrant/kubernetes/app.yml
         kubectl apply -f ./../vagrant/kubernetes/model-service.yml
         kubectl apply -f ../../vagrant/kubernetes/ingress.yml
+
+- name: Install Helm and Deploy Monitoring Tools
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Download and install Helm
+      shell: |
+        curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+        sudo apt-get install apt-transport-https --yes
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+        sudo apt-get update
+        sudo apt-get install helm
+    - name: Add Prometheus Repository
+      command: helm repo add prom-repo https://prometheus-community.github.io/helm-charts
+
+    - name: Update Helm repos
+      command: helm repo update
+
+    - name: Install Prometheus Stack
+      command: helm install prometheus prom-repo/kube-prometheus-stack
+
+    - name: Apply monitoring yaml files
+      shell: |
+        kubectl apply -f ../../vagrant/monitoring/monitoring.yaml
+        kubectl apply -f ../../vagrant/monitoring/prometheus_rule.yml
+        kubectl apply -f ../../vagrant/monitoring/alert_manager.yml
