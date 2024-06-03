@@ -1,0 +1,13 @@
+grafana:
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      default:
+        custom-dashboard:
+          file: /vagrant/dashboards/custom-dashboard.json
+  adminUser: admin
+  adminPassword: admin
+  service:
+    type: NodePort
+    port: 80

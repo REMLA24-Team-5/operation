@@ -60,7 +60,7 @@ Created PR: https://github.com/REMLA24-Team-5/Model-Training/pull/42
 Approved PR:
 
 -- Rado --
-Created PR:
+Created PR: https://github.com/REMLA24-Team-5/operation/pull/37
 Approved PR:
 
 # A5:
@@ -77,5 +77,5 @@ Created PR:
 Approved PR:
 
 -- Rado --
-Created PR:
+Created PR: https://github.com/REMLA24-Team-5/operation/pull/41
 Approved PR:
