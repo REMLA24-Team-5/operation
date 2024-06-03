@@ -73,9 +73,9 @@ Created PR: https://github.com/REMLA24-Team-5/operation/pull/38
 Approved PR: https://github.com/REMLA24-Team-5/Model-Training/pull/40
 
 -- Jurrian: --
-Created PR:
-Approved PR:
+Created PR: https://github.com/REMLA24-Team-5/Model-Training/pull/44
+Approved PR: 
 
 -- Rado --
 Created PR: https://github.com/REMLA24-Team-5/operation/pull/41
-Approved PR:
+Approved PR: https://github.com/REMLA24-Team-5/Model-Training/pull/44
