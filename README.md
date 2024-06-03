@@ -18,6 +18,17 @@ To run a Kubernetes cluster in the VMs, run the following command:
 vagrant up
 ```
 
+If you want to interact with the cluster, run the following command when on the host:
+
+```
+export KUBECONFIG=./playbooks/k3s.yaml
+```
+
+or this command when in the cluster
+```
+export KUBECONFIG=/vagrant/playbooks/k3s.yaml
+```
+
 DISCLAIMER: this does not work currently [21-5-2024]
 
 ## The project

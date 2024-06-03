@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  model.url: "http://127.0.0.1:8000"
+  model.url: http://service-model.default.svc.cluster.local:8000
