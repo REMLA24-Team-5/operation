@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: model
-        image: ghcr.io/remla24-team-5/model-service:latest
+        image: ghcr.io/remla24-team-5/model-service:v0.1.7
         ports:
         - containerPort: 8000
 ---
@@ -25,7 +25,7 @@ kind: Service
 metadata:
   name: service-model
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: model
   ports:

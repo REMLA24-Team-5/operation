@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 5000
         env:
-        - name: model_url
+        - name: model_service_url
           valueFrom:
             configMapKeyRef:
               name: config
