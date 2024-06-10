@@ -16,9 +16,19 @@ spec:
     spec:
       containers:
       - name: model
-        image: ghcr.io/remla24-team-5/model-service:v0.1.7
+        image: ghcr.io/remla24-team-5/model-service:latest
+
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
+        volumeMounts:
+        - mountPath: /home/resources
+          name: model-volume
+      volumes:
+      - name: model-volume
+        hostPath:
+          path: /vagrant/volume
+          type: Directory
 ---
 apiVersion: v1
 kind: Service
