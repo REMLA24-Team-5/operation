@@ -17,6 +17,8 @@ To run a Kubernetes cluster in the VMs, run the following command:
 ```
 vagrant up
 ```
+Its essential that the model joblib file and the train,test and validation split txt files are in the volumes folder of the root directory of operation. If you pulled from git, this should already be there and no further
+setup is needed.
 
 If you want to interact with the cluster, run the following command when on the host:
 
