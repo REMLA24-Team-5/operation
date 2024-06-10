@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: service-app-monitor
+  labels:
+    release: myprom
+spec:
+  selector:
+    matchLabels:
+      app: service-app-monitor
+  endpoints:
+  - interval: 30s

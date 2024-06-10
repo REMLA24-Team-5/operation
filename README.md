@@ -31,15 +31,22 @@ or this command when in the cluster
 export KUBECONFIG=/vagrant/playbooks/k3s.yaml
 ```
 
+## Prometheus Dashboard
+To open Prometheus, export the config and get all services:
+```
+    export KUBECONFIG=./playbooks/k3s.yaml
+    kubectl get services
+```
+You should look for the prometheus port, which you can use to enter Prometheus using the ip of the controller node.
+![prometheus-port](assets/prometheus-port.png)
+Inside Prometheus you can query app specific metrics such as ```page_requests_total```.
+
+
 ## Grafana Dashboard
-To open open Grafana, enter the controller:
+To open Grafana, export the config and get all services:
 ```
-    vagrant ssh controller
-```
-Export the config and look for the services in the monitoring namespace:
-```
-    export KUBECONFIG=/vagrant/playbooks/k3s.yaml
-    kubectl get services --namespace monitoring
+    export KUBECONFIG=./playbooks/k3s.yaml
+    kubectl get services
 ```
 You should look for the grafana port, which you can use to enter Grafana using the ip of the controller node.
 ![grafana-port](assets/grafana-port.png)

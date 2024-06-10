@@ -13,7 +13,7 @@
 - name: Install k3s on control-plane
   hosts: controller
   become: yes
-  tasks:        
+  tasks:
     - name: Install k3s
       shell: |
         curl -sfL https://get.k3s.io | sh -s - server --node-external-ip={{ ansible_host }} --write-kubeconfig-mode=644
@@ -53,18 +53,16 @@
         helm repo add prom-repo https://prometheus-community.github.io/helm-charts
         helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
         helm repo update
-    
-    - name: Create monitoring namespace if not exists
-      shell: |
-        export KUBECONFIG=/vagrant/playbooks/k3s.yaml
-        kubectl create namespace monitoring
-      ignore_errors: yes
-    
+
     - name: Install Prometheus and Grafana
       shell: |
         export KUBECONFIG=/vagrant/playbooks/k3s.yaml
-        kubectl apply -f /vagrant/playbooks/grafana-config.yaml -n monitoring 
-        helm install myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml 
+        kubectl apply -f /vagrant/playbooks/grafana-config.yaml 
+        kubectl apply -f /vagrant/monitoring/monitoring.yml
+        helm install myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
+
+#        kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
+#        kubectl apply -f /vagrant/monitoring/alert_manager.yml
 
 
 # - name: Install k3s on worker nodes
