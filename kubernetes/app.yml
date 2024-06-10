@@ -1,18 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
-  labels:
-    app: app
+  name: app-v1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: app
   template:
-    metadata:
-      labels:
-        app: app
+    metadata:  
+      labels: { app: app,  version: v1 }
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/remla24-team-5/app:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: model_service_url
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: model.url
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:  
+      labels: { app: app,  version: v2 }
     spec:
       containers:
       - name: app
@@ -31,12 +53,11 @@ kind: Service
 metadata:
   name: service-app
 spec:
-  type: LoadBalancer
   selector:
     app: app
   ports:
-    - port: 5000
-      targetPort: 5000
+  - port: 5000
+    targetPort: 5000
 # ---
 # apiVersion: monitoring.coreos.com/v1
 # kind: ServiceMonitor
