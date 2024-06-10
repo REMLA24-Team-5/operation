@@ -79,3 +79,20 @@ Approved PR:
 -- Rado --
 Created PR: https://github.com/REMLA24-Team-5/operation/pull/41
 Approved PR: https://github.com/REMLA24-Team-5/Model-Training/pull/44
+
+# A5:
+-- Saga: --
+Created PR: https://github.com/REMLA24-Team-5/app/pull/20
+Approved PR: 
+
+-- Tim: --
+Created PR: worked on report
+Approved PR: https://github.com/REMLA24-Team-5/operation/pull/40
+
+-- Jurrian: --
+Created PR: https://github.com/REMLA24-Team-5/operation/pull/43
+Approved PR: 
+
+-- Rado --
+Created PR: https://github.com/REMLA24-Team-5/operation/pull/44
+Approved PR: 
