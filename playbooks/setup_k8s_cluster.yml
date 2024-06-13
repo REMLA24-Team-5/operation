@@ -13,7 +13,7 @@
 - name: Install k3s on control-plane
   hosts: controller
   become: yes
-  tasks:        
+  tasks:
     - name: Install k3s
       shell: |
         curl -sfL https://get.k3s.io | sh -s - server --node-external-ip={{ ansible_host }} --write-kubeconfig-mode=644
@@ -76,10 +76,11 @@
     - name: Install Prometheus and Grafana
       shell: |
         kubectl apply -f /vagrant/playbooks/grafana-config.yaml -n monitoring 
+        kubectl apply -f /vagrant/monitoring/monitoring.yml -n monitoring
         if helm list -n monitoring | grep myprom; then
-          helm upgrade myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml
+          helm upgrade myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
         else
-          helm install myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml
+          helm install myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
         fi
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
@@ -102,7 +103,7 @@
 
     - name: Install istio
       shell: |
-        sudo chown -R $USER:$USER $ISTIO_DIR
+        sudo chown -R $USER:$USER {{ ISTIO_DIR }}
         cd {{ ISTIO_DIR }}
         export PATH=$PWD/bin:$PATH
         istioctl install --set profile=demo -y

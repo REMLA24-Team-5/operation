@@ -1,0 +1,4 @@
+prometheus:
+  service:
+    type: NodePort
+    port: 9090
