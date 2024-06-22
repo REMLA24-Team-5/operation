@@ -57,8 +57,7 @@
     - name: Install Prometheus and Grafana
       shell: |
         export KUBECONFIG=/vagrant/playbooks/k3s.yaml
-        kubectl apply -f /vagrant/playbooks/grafana-config.yaml 
-        kubectl apply -f /vagrant/monitoring/monitoring.yml
+        kubectl apply -f /vagrant/playbooks/grafana-config.yaml
         helm install myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
 
 #        kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
@@ -88,3 +87,4 @@
         kubectl apply -f /vagrant/kubernetes/app.yml
         kubectl apply -f /vagrant/kubernetes/model-service.yml
         kubectl apply -f /vagrant/kubernetes/ingress.yml
+        kubectl apply -f /vagrant/monitoring/monitoring.yml
