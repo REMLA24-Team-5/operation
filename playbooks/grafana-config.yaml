@@ -316,7 +316,7 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "page_request_summary_sum / clamp_min(page_request_summary_count, 1)",
+              "expr": "model_request_summary_sum / clamp_min(model_request_summary_count, 1)",
               "legendFormat": "Page Request Summary"
             }
           ],
@@ -334,7 +334,7 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "sum(rate(page_request_histogram_bucket[5m])) by (le)",
+              "expr": "sum(rate(model_request_histogram_bucket[5m])) by (le)",
               "legendFormat": "Phishing Attempts"
             }
           ],
