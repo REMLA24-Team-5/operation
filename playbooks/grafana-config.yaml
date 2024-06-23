@@ -312,12 +312,12 @@ data:
         {
           "id": 15,
           "type": "stat",
-          "title": "Page Request durations Summary",
+          "title": "Model Request durations Summary",
           "datasource": "Prometheus",
           "targets": [
             {
               "expr": "model_request_summary_sum / clamp_min(model_request_summary_count, 1)",
-              "legendFormat": "Page Request Summary"
+              "legendFormat": "Model Request duration Summary"
             }
           ],
           "gridPos": {
@@ -330,12 +330,12 @@ data:
         {
           "id": 16,
           "type": "heatmap",
-          "title": "Page Request Histogram",
+          "title": "Model Request Histogram",
           "datasource": "Prometheus",
           "targets": [
             {
               "expr": "sum(rate(model_request_histogram_bucket[5m])) by (le)",
-              "legendFormat": "Phishing Attempts"
+              "legendFormat": "Model requests duration"
             }
           ],
           "gridPos": {
