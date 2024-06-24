@@ -33,22 +33,6 @@ spec:
           path: /vagrant/volume
           type: Directory
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: model-v1
-  labels:
-    app: model
-    version: v1
-spec:
-  type: ClusterIP
-  selector:
-    app: model
-    version: v1
-  ports:
-  - port: 8000
-    targetPort: 8000
----
 
 apiVersion: apps/v1
 kind: Deployment
@@ -88,15 +72,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: model-v2
+  name: service-model
   labels:
-    app: model
-    version: v2
+    app: service-model-monitor
 spec:
   type: ClusterIP
   selector:
     app: model
-    version: v2
   ports:
-  - port: 8000
-    targetPort: 8000
+    - port: 8000
+      targetPort: 8000

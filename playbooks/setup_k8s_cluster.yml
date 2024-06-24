@@ -64,6 +64,7 @@
     - name: Install Prometheus and Grafana
       shell: |
         kubectl apply -f /vagrant/playbooks/grafana-config.yaml
+        kubectl apply -f /vagrant/playbooks/grafana-config-shadow-launch.yaml
         kubectl apply -f /vagrant/monitoring/monitoring.yml
         if helm list | grep myprom; then
           helm upgrade myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
@@ -131,11 +132,14 @@
     - name: Apply Kubernetes yml files
       shell: |
         kubectl apply -f /vagrant/kubernetes/environment.yml
-        kubectl apply -f /vagrant/kubernetes/model-service.yml
         kubectl apply -f /vagrant/kubernetes/app.yml
         kubectl apply -f /vagrant/monitoring/monitoring.yml
         kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
         kubectl apply -f /vagrant/kubernetes/istio.yml
+        
+        kubectl apply -f /vagrant/kubernetes/model-service-mirrors.yml
+        kubectl apply -f /vagrant/kubernetes/istio-shadow-launch.yml
+        kubectl apply -f /vagrant/monitoring/monitoring-mirrors.yml
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
       async: 1800
