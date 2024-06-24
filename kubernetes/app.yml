@@ -59,7 +59,7 @@ spec:
     app: app
   ports:
   - port: 5000
-    targetPort: 5000
+    targetPort: 5000  
 # ---
 # apiVersion: monitoring.coreos.com/v1
 # kind: ServiceMonitor

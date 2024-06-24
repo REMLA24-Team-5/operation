@@ -53,21 +53,8 @@
         helm repo add prom-repo https://prometheus-community.github.io/helm-charts
         helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
         helm repo update
-    
-    # - name: Check if monitoring namespace exists
-    #   shell: kubectl get namespace monitoring --ignore-not-found
-    #   register: monitoring_namespace
-    #   environment:
-    #     KUBECONFIG: /vagrant/playbooks/k3s.yaml
-
-    # - name: Create monitoring namespace if not exists
-    #   shell: kubectl create namespace monitoring
-    #   when: monitoring_namespace.stdout == ""
-    #   environment:
-    #     KUBECONFIG: /vagrant/playbooks/k3s.yaml
 
     - name: Check if Helm release exists
-      # shell: helm list -n monitoring | grep myprom || true
       shell: helm list | grep myprom || true
       register: helm_release_check
       ignore_errors: true
@@ -146,6 +133,8 @@
         kubectl apply -f /vagrant/kubernetes/environment.yml
         kubectl apply -f /vagrant/kubernetes/model-service.yml
         kubectl apply -f /vagrant/kubernetes/app.yml
+        kubectl apply -f /vagrant/monitoring/monitoring.yml
+        kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
         kubectl apply -f /vagrant/kubernetes/istio.yml
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
