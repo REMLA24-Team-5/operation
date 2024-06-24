@@ -58,8 +58,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(page_requests_total[5m])",
-              "legendFormat": "Page Requests Rate"
+              "expr": "rate(page_requests_total{pod=~\".*app-v1.*\"}[5m])",
+              "legendFormat": "Page Requests Rate (v1)"
+            },
+            {
+              "expr": "rate(page_requests_total{pod=~\".*app-v2.*\"}[5m])",
+              "legendFormat": "Page Requests Rate (v2)"
             }
           ],
           "gridPos": {
@@ -76,8 +80,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(model_requests_total[5m])",
-              "legendFormat": "Model Requests Rate"
+              "expr": "rate(model_requests_total{pod=~\".*app-v1.*\"}[5m])",
+              "legendFormat": "Model Requests Rate (v1)"
+            },
+            {
+              "expr": "rate(model_requests_total{pod=~\".*app-v2.*\"}[5m])",
+              "legendFormat": "Model Requests Rate (v2)"
             }
           ],
           "gridPos": {
@@ -94,8 +102,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(phishing_detection_total[5m])",
-              "legendFormat": "Phishing Detections Rate"
+              "expr": "rate(phishing_detection_total{pod=~\".*app-v1.*\"}[5m])",
+              "legendFormat": "Phishing Detections Rate (v1)"
+            },
+            {
+              "expr": "rate(phishing_detection_total{pod=~\".*app-v2.*\"}[5m])",
+              "legendFormat": "Phishing Detections Rate (v2)"
             }
           ],
           "gridPos": {
@@ -112,8 +124,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(user_phishing_guess_total[5m])",
-              "legendFormat": "User Phishing Guesses Rate"
+              "expr": "rate(user_phishing_guess_total{pod=~\".*app-v1.*\"}[5m])",
+              "legendFormat": "User Phishing Guesses Rate (v1)"
+            },
+            {
+              "expr": "rate(user_phishing_guess_total{pod=~\".*app-v2.*\"}[5m])",
+              "legendFormat": "User Phishing Guesses Rate (v2)"
             }
           ],
           "gridPos": {
@@ -130,8 +146,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(user_same_guess_total[5m])",
-              "legendFormat": "User Same Guesses Rate"
+              "expr": "rate(user_same_guess_total{pod=~\".*app-v1.*\"}[5m])",
+              "legendFormat": "User Same Guesses Rate (v1)"
+            },
+            {
+              "expr": "rate(user_same_guess_total{pod=~\".*app-v2.*\"}[5m])",
+              "legendFormat": "User Same Guesses Rate (v2)"
             }
           ],
           "gridPos": {
@@ -148,8 +168,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "user_guess_status",
-              "legendFormat": "User Guess Agreement"
+              "expr": "user_guess_status{pod=~\".*app-v1.*\"}",
+              "legendFormat": "User Guess Agreement (v1)"
+            },
+            {
+              "expr": "user_guess_status{pod=~\".*app-v2.*\"}",
+              "legendFormat": "User Guess Agreement (v2)"
             }
           ],
           "gridPos": {
@@ -172,8 +196,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "phishing_rate",
-              "legendFormat": "Phishing Rate"
+              "expr": "phishing_rate{pod=~\".*app-v1.*\"}",
+              "legendFormat": "Phishing Rate (v1)"
+            },
+            {
+              "expr": "phishing_rate{pod=~\".*app-v2.*\"}",
+              "legendFormat": "Phishing Rate (v2)"
             }
           ],
           "gridPos": {
@@ -196,8 +224,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "user_phishing_guess_rate",
-              "legendFormat": "User Phishing Guess Rate"
+              "expr": "user_phishing_guess_rate{pod=~\".*app-v1.*\"}",
+              "legendFormat": "User Phishing Guess Rate (v1)"
+            },
+            {
+              "expr": "user_phishing_guess_rate{pod=~\".*app-v2.*\"}",
+              "legendFormat": "User Phishing Guess Rate (v2)"
             }
           ],
           "gridPos": {
@@ -220,8 +252,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "user_same_guess_rate",
-              "legendFormat": "User Same Guess Rate"
+              "expr": "user_same_guess_rate{pod=~\".*app-v1.*\"}",
+              "legendFormat": "User Same Guess Rate (v1)"
+            },
+            {
+              "expr": "user_same_guess_rate{pod=~\".*app-v2.*\"}",
+              "legendFormat": "User Same Guess Rate (v2)"
             }
           ],
           "gridPos": {
@@ -244,8 +280,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "avg(phishing_rate)",
-              "legendFormat": "Phishing Rate"
+              "expr": "avg(phishing_rate{pod=~\".*app-v1.*\"})",
+              "legendFormat": "Average Phishing Rate (v1)"
+            },
+            {
+              "expr": "avg(phishing_rate{pod=~\".*app-v2.*\"})",
+              "legendFormat": "Average Phishing Rate (v2)"
             }
           ],
           "gridPos": {
@@ -268,8 +308,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "avg(user_phishing_guess_rate)",
-              "legendFormat": "User Phishing Guess Rate"
+              "expr": "avg(user_phishing_guess_rate{pod=~\".*app-v1.*\"})",
+              "legendFormat": "Average User Phishing Guess Rate (v1)"
+            },
+            {
+              "expr": "avg(user_phishing_guess_rate{pod=~\".*app-v2.*\"})",
+              "legendFormat": "Average User Phishing Guess Rate (v2)"
             }
           ],
           "gridPos": {
@@ -292,8 +336,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "avg(user_same_guess_rate)",
-              "legendFormat": "User Same Guess Rate"
+              "expr": "avg(user_same_guess_rate{pod=~\".*app-v1.*\"})",
+              "legendFormat": "Average User Same Guess Rate (v1)"
+            },
+            {
+              "expr": "avg(user_same_guess_rate{pod=~\".*app-v2.*\"})",
+              "legendFormat": "Average User Same Guess Rate (v2)"
             }
           ],
           "gridPos": {
@@ -316,8 +364,12 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "model_request_summary_sum / clamp_min(model_request_summary_count, 1)",
-              "legendFormat": "Model Request duration Summary"
+              "expr": "model_request_summary_sum{pod=~\".*app-v1.*\"} / clamp_min(model_request_summary_count{pod=~\".*app-v1.*\"}, 1)",
+              "legendFormat": "Model Request duration Summary (v1)"
+            },
+            {
+              "expr": "model_request_summary_sum{pod=~\".*app-v2.*\"} / clamp_min(model_request_summary_count{pod=~\".*app-v2.*\"}, 1)",
+              "legendFormat": "Model Request duration Summary (v2)"
             }
           ],
           "gridPos": {
@@ -330,17 +382,50 @@ data:
         {
           "id": 16,
           "type": "heatmap",
-          "title": "Model Request Histogram",
+          "title": "Model Request Histogram v1",
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "sum(rate(model_request_histogram_bucket[5m])) by (le)",
-              "legendFormat": "Model requests duration"
+              "expr": "sum(rate(model_request_histogram_bucket{pod=~\".*app-v1.*\"}[5m])) by (le)",
+              "legendFormat": "Model requests duration (v1)"
             }
           ],
           "gridPos": {
             "x": 12,
             "y": 63,
+            "w": 24,
+            "h": 9
+          },
+          "heatmap": {
+            "color": {
+              "mode": "opacity",
+              "cardColor": "#b4ff00",
+              "colorScale": "sqrt",
+              "exponent": 0.5,
+              "colorScheme": "interpolateBlues"
+            },
+            "xAxis": {
+              "show": true
+            },
+            "yAxis": {
+              "show": true
+            }
+          }
+        },
+        {
+          "id": 16,
+          "type": "heatmap",
+          "title": "Model Request Histogram v2",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(rate(model_request_histogram_bucket{pod=~\".*app-v2.*\"}[5m])) by (le)",
+              "legendFormat": "Model requests duration (v2)"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 72,
             "w": 24,
             "h": 9
           },
