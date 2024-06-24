@@ -16,7 +16,7 @@
   tasks:
     - name: Install k3s
       shell: |
-        curl -sfL https://get.k3s.io | sh -s - server --node-external-ip={{ ansible_host }} --write-kubeconfig-mode=644
+        curl -sfL https://get.k3s.io | sh -s - server --node-external-ip={{ ansible_host }} --write-kubeconfig-mode=644 --disable=traefik
       args:
         creates: /etc/rancher/k3s/k3s.yaml
 
@@ -95,7 +95,7 @@
         cd {{ ISTIO_DIR }}
         export PATH=$PWD/bin:$PATH
         istioctl install --set profile=demo -y
-      environment:
+      environment:  
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
       async: 1800
       poll: 30   
