@@ -54,19 +54,310 @@ data:
         {
           "id": 3,
           "type": "graph",
-          "title": "Number of Requests",
+          "title": "Page Request Count",
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "sum(rate(http_requests_total[5m]))",
-              "legendFormat": "Requests"
+              "expr": "rate(page_requests_total[5m])",
+              "legendFormat": "Page Requests Rate"
             }
           ],
           "gridPos": {
             "x": 6,
             "y": 6,
-            "w": 6,
-            "h": 6
+            "w": 12,
+            "h": 9
+          }
+        },
+        {
+          "id": 4,
+          "type": "graph",
+          "title": "Model Request Count",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(model_requests_total[5m])",
+              "legendFormat": "Model Requests Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 9,
+            "w": 12,
+            "h": 9
+          }
+        },
+        {
+          "id": 5,
+          "type": "graph",
+          "title": "Phishing Count",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(phishing_detection_total[5m])",
+              "legendFormat": "Phishing Detections Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 0,
+            "y": 18,
+            "w": 12,
+            "h": 9
+          }
+        },
+        {
+          "id": 6,
+          "type": "graph",
+          "title": "User Phishing Guess Count",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(user_phishing_guess_total[5m])",
+              "legendFormat": "User Phishing Guesses Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 18,
+            "w": 12,
+            "h": 9
+          }
+        },
+        {
+          "id": 7,
+          "type": "graph",
+          "title": "User Same Guess Count",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(user_same_guess_total[5m])",
+              "legendFormat": "User Same Guesses Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 0,
+            "y": 27,
+            "w": 12,
+            "h": 9
+          }
+        },
+        {
+          "id": 8,
+          "type": "gauge",
+          "title": "User Guess Agree Status Gauge",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "user_guess_status",
+              "legendFormat": "User Guess Agreement"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 27,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 1
+            }
+          }
+        },
+        {
+          "id": 9,
+          "type": "gauge",
+          "title": "Phishing Rate",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "phishing_rate",
+              "legendFormat": "Phishing Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 0,
+            "y": 36,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        {
+          "id": 10,
+          "type": "gauge",
+          "title": "User Phishing Guess Rate",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "user_phishing_guess_rate",
+              "legendFormat": "User Phishing Guess Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 36,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        {
+          "id": 11,
+          "type": "gauge",
+          "title": "User Same Guess Rate",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "user_same_guess_rate",
+              "legendFormat": "User Same Guess Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 0,
+            "y": 45,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100
+            }
+          }
+        }, 
+        {
+          "id": 12,
+          "type": "gauge",
+          "title": "Average Phishing Rate",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(phishing_rate)",
+              "legendFormat": "Phishing Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 45,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        {
+          "id": 13,
+          "type": "gauge",
+          "title": "Average User Phishing Guess Rate",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(user_phishing_guess_rate)",
+              "legendFormat": "User Phishing Guess Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 0,
+            "y": 54,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        {
+          "id": 14,
+          "type": "gauge",
+          "title": "Average User Same Guess Rate",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "avg(user_same_guess_rate)",
+              "legendFormat": "User Same Guess Rate"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 54,
+            "w": 12,
+            "h": 9
+          },
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        {
+          "id": 15,
+          "type": "stat",
+          "title": "Model Request durations Summary",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "model_request_summary_sum / clamp_min(model_request_summary_count, 1)",
+              "legendFormat": "Model Request duration Summary"
+            }
+          ],
+          "gridPos": {
+            "x": 0,
+            "y": 63,
+            "w": 12,
+            "h": 9
+          }
+        },
+        {
+          "id": 16,
+          "type": "heatmap",
+          "title": "Model Request Histogram",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(rate(model_request_histogram_bucket[5m])) by (le)",
+              "legendFormat": "Model requests duration"
+            }
+          ],
+          "gridPos": {
+            "x": 12,
+            "y": 63,
+            "w": 24,
+            "h": 9
+          },
+          "heatmap": {
+            "color": {
+              "mode": "opacity",
+              "cardColor": "#b4ff00",
+              "colorScale": "sqrt",
+              "exponent": 0.5,
+              "colorScheme": "interpolateBlues"
+            },
+            "xAxis": {
+              "show": true
+            },
+            "yAxis": {
+              "show": true
+            }
           }
         }
       ],
