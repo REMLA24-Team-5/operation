@@ -1,0 +1,72 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: app-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: app-rules
+spec:
+  host: service-app
+  subsets:
+  - name: v1
+    labels: { version: v1 }
+  - name: v2
+    labels: { version: v2 }
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: entry-service
+spec:
+  gateways:
+  - app-gateway
+  hosts:
+  - "*"
+  http:
+  - match:
+    - headers:
+        x-user-id:
+          exact: "test-user"
+    route:
+    - destination:
+        host: service-app
+        subset: v2
+  - match:
+    - headers:
+        x-user-id:
+          exact: "old-user"
+    route:
+    - destination:
+        host: service-app
+        subset: v1
+  - route:
+    - destination:
+        host: service-app
+        subset: v1
+      weight: 90
+      headers:
+        request:
+          set:
+            x-user-id: "old-user"
+    - destination:
+        host: service-app
+        subset: v2
+      weight: 10
+      headers:
+        request:
+          set:
+            x-user-id: "test-user"
