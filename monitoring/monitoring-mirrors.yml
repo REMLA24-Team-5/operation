@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: model-v1-monitor
+  labels:
+    release: myprom
+spec:
+  selector:
+    matchLabels:
+      app: model
+      version: v1
+  endpoints:
+    interval: 30s
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: model-v2-monitor
+  labels:
+    release: myprom
+spec:
+  selector:
+    matchLabels:
+      app: model
+      version: v2
+  endpoints:
+    interval: 30s

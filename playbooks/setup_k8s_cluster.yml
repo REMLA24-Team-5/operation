@@ -82,7 +82,12 @@
       shell: |
         kubectl apply -f /vagrant/kubernetes/environment.yml
         kubectl apply -f /vagrant/kubernetes/app.yml
-        kubectl apply -f /vagrant/kubernetes/model-service.yml
+#        kubectl apply -f /vagrant/kubernetes/model-service.yml
         kubectl apply -f /vagrant/kubernetes/ingress.yml
         kubectl apply -f /vagrant/monitoring/monitoring.yml
         kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
+        
+        kubectl apply -f /vagrant/monitoring/model-service-mirrors.yml
+        kubectl apply -f /vagrant/monitoring/virtual-service-mirrors.yml
+        kubectl apply -f /vagrant/monitoring/destination-rule-mirrors.yml
+        kubectl apply -f /vagrant/monitoring/monitoring-mirrors.yml
