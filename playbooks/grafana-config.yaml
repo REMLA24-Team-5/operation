@@ -58,11 +58,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(page_requests_total{pod=~\".*v1.*\"}[5m])",
+              "expr": "rate(page_requests_total{pod=~\".*app-v1.*\"}[5m])",
               "legendFormat": "Page Requests Rate (v1)"
             },
             {
-              "expr": "rate(page_requests_total{pod=~\".*v2.*\"}[5m])",
+              "expr": "rate(page_requests_total{pod=~\".*app-v2.*\"}[5m])",
               "legendFormat": "Page Requests Rate (v2)"
             }
           ],
@@ -80,11 +80,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(model_requests_total{pod=~\".*v1.*\"}[5m])",
+              "expr": "rate(model_requests_total{pod=~\".*app-v1.*\"}[5m])",
               "legendFormat": "Model Requests Rate (v1)"
             },
             {
-              "expr": "rate(model_requests_total{pod=~\".*v2.*\"}[5m])",
+              "expr": "rate(model_requests_total{pod=~\".*app-v2.*\"}[5m])",
               "legendFormat": "Model Requests Rate (v2)"
             }
           ],
@@ -102,11 +102,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(phishing_detection_total{pod=~\".*v1.*\"}[5m])",
+              "expr": "rate(phishing_detection_total{pod=~\".*app-v1.*\"}[5m])",
               "legendFormat": "Phishing Detections Rate (v1)"
             },
             {
-              "expr": "rate(phishing_detection_total{pod=~\".*v2.*\"}[5m])",
+              "expr": "rate(phishing_detection_total{pod=~\".*app-v2.*\"}[5m])",
               "legendFormat": "Phishing Detections Rate (v2)"
             }
           ],
@@ -124,11 +124,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(user_phishing_guess_total{pod=~\".*v1.*\"}[5m])",
+              "expr": "rate(user_phishing_guess_total{pod=~\".*app-v1.*\"}[5m])",
               "legendFormat": "User Phishing Guesses Rate (v1)"
             },
             {
-              "expr": "rate(user_phishing_guess_total{pod=~\".*v2.*\"}[5m])",
+              "expr": "rate(user_phishing_guess_total{pod=~\".*app-v2.*\"}[5m])",
               "legendFormat": "User Phishing Guesses Rate (v2)"
             }
           ],
@@ -146,11 +146,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "rate(user_same_guess_total{pod=~\".*v1.*\"}[5m])",
+              "expr": "rate(user_same_guess_total{pod=~\".*app-v1.*\"}[5m])",
               "legendFormat": "User Same Guesses Rate (v1)"
             },
             {
-              "expr": "rate(user_same_guess_total{pod=~\".*v2.*\"}[5m])",
+              "expr": "rate(user_same_guess_total{pod=~\".*app-v2.*\"}[5m])",
               "legendFormat": "User Same Guesses Rate (v2)"
             }
           ],
@@ -168,11 +168,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "user_guess_status{pod=~\".*v1.*\"}",
+              "expr": "user_guess_status{pod=~\".*app-v1.*\"}",
               "legendFormat": "User Guess Agreement (v1)"
             },
             {
-              "expr": "user_guess_status{pod=~\".*v2.*\"}",
+              "expr": "user_guess_status{pod=~\".*app-v2.*\"}",
               "legendFormat": "User Guess Agreement (v2)"
             }
           ],
@@ -196,11 +196,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "phishing_rate{pod=~\".*v1.*\"}",
+              "expr": "phishing_rate{pod=~\".*app-v1.*\"}",
               "legendFormat": "Phishing Rate (v1)"
             },
             {
-              "expr": "phishing_rate{pod=~\".*v2.*\"}",
+              "expr": "phishing_rate{pod=~\".*app-v2.*\"}",
               "legendFormat": "Phishing Rate (v2)"
             }
           ],
@@ -224,11 +224,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "user_phishing_guess_rate{pod=~\".*v1.*\"}",
+              "expr": "user_phishing_guess_rate{pod=~\".*app-v1.*\"}",
               "legendFormat": "User Phishing Guess Rate (v1)"
             },
             {
-              "expr": "user_phishing_guess_rate{pod=~\".*v2.*\"}",
+              "expr": "user_phishing_guess_rate{pod=~\".*app-v2.*\"}",
               "legendFormat": "User Phishing Guess Rate (v2)"
             }
           ],
@@ -252,11 +252,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "user_same_guess_rate{pod=~\".*v1.*\"}",
+              "expr": "user_same_guess_rate{pod=~\".*app-v1.*\"}",
               "legendFormat": "User Same Guess Rate (v1)"
             },
             {
-              "expr": "user_same_guess_rate{pod=~\".*v2.*\"}",
+              "expr": "user_same_guess_rate{pod=~\".*app-v2.*\"}",
               "legendFormat": "User Same Guess Rate (v2)"
             }
           ],
@@ -280,11 +280,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "avg(phishing_rate{pod=~\".*v1.*\"})",
+              "expr": "avg(phishing_rate{pod=~\".*app-v1.*\"})",
               "legendFormat": "Average Phishing Rate (v1)"
             },
             {
-              "expr": "avg(phishing_rate{pod=~\".*v2.*\"})",
+              "expr": "avg(phishing_rate{pod=~\".*app-v2.*\"})",
               "legendFormat": "Average Phishing Rate (v2)"
             }
           ],
@@ -308,11 +308,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "avg(user_phishing_guess_rate{pod=~\".*v1.*\"})",
+              "expr": "avg(user_phishing_guess_rate{pod=~\".*app-v1.*\"})",
               "legendFormat": "Average User Phishing Guess Rate (v1)"
             },
             {
-              "expr": "avg(user_phishing_guess_rate{pod=~\".*v2.*\"})",
+              "expr": "avg(user_phishing_guess_rate{pod=~\".*app-v2.*\"})",
               "legendFormat": "Average User Phishing Guess Rate (v2)"
             }
           ],
@@ -336,11 +336,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "avg(user_same_guess_rate{pod=~\".*v1.*\"})",
+              "expr": "avg(user_same_guess_rate{pod=~\".*app-v1.*\"})",
               "legendFormat": "Average User Same Guess Rate (v1)"
             },
             {
-              "expr": "avg(user_same_guess_rate{pod=~\".*v2.*\"})",
+              "expr": "avg(user_same_guess_rate{pod=~\".*app-v2.*\"})",
               "legendFormat": "Average User Same Guess Rate (v2)"
             }
           ],
@@ -364,11 +364,11 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "model_request_summary_sum{pod=~\".*v1.*\"} / clamp_min(model_request_summary_count{pod=~\".*v1.*\"}, 1)",
+              "expr": "model_request_summary_sum{pod=~\".*app-v1.*\"} / clamp_min(model_request_summary_count{pod=~\".*app-v1.*\"}, 1)",
               "legendFormat": "Model Request duration Summary (v1)"
             },
             {
-              "expr": "model_request_summary_sum{pod=~\".*v2.*\"} / clamp_min(model_request_summary_count{pod=~\".*v2.*\"}, 1)",
+              "expr": "model_request_summary_sum{pod=~\".*app-v2.*\"} / clamp_min(model_request_summary_count{pod=~\".*app-v2.*\"}, 1)",
               "legendFormat": "Model Request duration Summary (v2)"
             }
           ],
@@ -386,7 +386,7 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "sum(rate(model_request_histogram_bucket{pod=~\".*v1.*\"}[5m])) by (le)",
+              "expr": "sum(rate(model_request_histogram_bucket{pod=~\".*app-v1.*\"}[5m])) by (le)",
               "legendFormat": "Model requests duration (v1)"
             }
           ],
@@ -419,7 +419,7 @@ data:
           "datasource": "Prometheus",
           "targets": [
             {
-              "expr": "sum(rate(model_request_histogram_bucket{pod=~\".*v2.*\"}[5m])) by (le)",
+              "expr": "sum(rate(model_request_histogram_bucket{pod=~\".*app-v2.*\"}[5m])) by (le)",
               "legendFormat": "Model requests duration (v2)"
             }
           ],
