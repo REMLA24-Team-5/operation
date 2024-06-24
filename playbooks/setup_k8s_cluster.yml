@@ -16,7 +16,7 @@
   tasks:
     - name: Install k3s
       shell: |
-        curl -sfL https://get.k3s.io | sh -s - server --node-external-ip={{ ansible_host }} --write-kubeconfig-mode=644
+        curl -sfL https://get.k3s.io | sh -s - server --node-external-ip={{ ansible_host }} --write-kubeconfig-mode=644 --disable=traefik
       args:
         creates: /etc/rancher/k3s/k3s.yaml
 
@@ -54,25 +54,75 @@
         helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
         helm repo update
 
+    - name: Check if Helm release exists
+      shell: helm list | grep myprom || true
+      register: helm_release_check
+      ignore_errors: true
+      environment:
+        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+
     - name: Install Prometheus and Grafana
       shell: |
-        export KUBECONFIG=/vagrant/playbooks/k3s.yaml
         kubectl apply -f /vagrant/playbooks/grafana-config.yaml
-        helm install myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
+        kubectl apply -f /vagrant/monitoring/monitoring.yml
+        if helm list | grep myprom; then
+          helm upgrade myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
+        else
+          helm install myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
+        fi
+      environment:
+        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+
+- name: Set up istio
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Curl istio
+      shell: |
+        curl -L https://istio.io/downloadIstio | sh -
+
+    - name: Set ISTIO_DIR fact
+      shell: ls -d istio-*
+      register: istio_dir_result
+
+    - name: Set ISTIO_DIR variable
+      set_fact:
+        ISTIO_DIR: "{{ istio_dir_result.stdout }}"
+
+    - name: Install istio
+      shell: |
+        sudo chown -R $USER:$USER {{ ISTIO_DIR }}
+        cd {{ ISTIO_DIR }}
+        export PATH=$PWD/bin:$PATH
+        istioctl install --set profile=demo -y
+      environment:
+        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+      async: 1800
+      poll: 30
+    - name: Install istio addons
+      shell: |
+        cd {{ ISTIO_DIR }}
+        kubectl apply -f ./samples/addons/prometheus.yaml
+        kubectl apply -f ./samples/addons/jaeger.yaml
+        kubectl apply -f ./samples/addons/kiali.yaml
+      environment:
+        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+      async: 1800
+      poll: 30
 
 
-# - name: Install k3s on worker nodes
-#   hosts: workers
-#   become: yes
-#   tasks:
-#     - name: Get k3s token from local machine
-#       slurp:
-#         src: /vagrant/playbooks/k3s_token
-#       register: k3s_token
+- name: Install k3s on worker nodes
+  hosts: workers
+  become: yes
+  tasks:
+    - name: Get k3s token from local machine
+      slurp:
+        src: /vagrant/playbooks/k3s_token
+      register: k3s_token
 
-#     - name: Join worker nodes to the cluster
-#       shell: |
-#         curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars['controller'].ansible_host }}:6443 K3S_TOKEN={{ k3s_token['content'] | b64decode | regex_replace('\n', '')}} sh -s - agent --node-external-ip={{ ansible_host }}
+    - name: Join worker nodes to the cluster
+      shell: |
+        curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars['controller'].ansible_host }}:6443 K3S_TOKEN={{ k3s_token['content'] | b64decode | regex_replace('\n', '')}} sh -s - agent --node-external-ip={{ ansible_host }}
 
 - name: Setup cluster
   hosts: controller
@@ -81,13 +131,12 @@
     - name: Apply Kubernetes yml files
       shell: |
         kubectl apply -f /vagrant/kubernetes/environment.yml
+        kubectl apply -f /vagrant/kubernetes/model-service.yml
         kubectl apply -f /vagrant/kubernetes/app.yml
-#        kubectl apply -f /vagrant/kubernetes/model-service.yml
-        kubectl apply -f /vagrant/kubernetes/ingress.yml
         kubectl apply -f /vagrant/monitoring/monitoring.yml
         kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
-        
-        kubectl apply -f /vagrant/monitoring/model-service-mirrors.yml
-        kubectl apply -f /vagrant/monitoring/virtual-service-mirrors.yml
-        kubectl apply -f /vagrant/monitoring/destination-rule-mirrors.yml
-        kubectl apply -f /vagrant/monitoring/monitoring-mirrors.yml
+        kubectl apply -f /vagrant/kubernetes/istio.yml
+      environment:
+        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+      async: 1800
+      poll: 30
