@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ghcr.io/remla24-team-5/app:latest
+        image: ghcr.io/remla24-team-5/app:v0.0.8
         ports:
         - containerPort: 5000
         env:
@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ghcr.io/remla24-team-5/app:latest
+        image: ghcr.io/remla24-team-5/app:v0.0.9
         ports:
         - containerPort: 5000
         env:

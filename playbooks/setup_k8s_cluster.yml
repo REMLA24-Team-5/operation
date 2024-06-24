@@ -54,20 +54,21 @@
         helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
         helm repo update
     
-    - name: Check if monitoring namespace exists
-      shell: kubectl get namespace monitoring --ignore-not-found
-      register: monitoring_namespace
-      environment:
-        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+    # - name: Check if monitoring namespace exists
+    #   shell: kubectl get namespace monitoring --ignore-not-found
+    #   register: monitoring_namespace
+    #   environment:
+    #     KUBECONFIG: /vagrant/playbooks/k3s.yaml
 
-    - name: Create monitoring namespace if not exists
-      shell: kubectl create namespace monitoring
-      when: monitoring_namespace.stdout == ""
-      environment:
-        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+    # - name: Create monitoring namespace if not exists
+    #   shell: kubectl create namespace monitoring
+    #   when: monitoring_namespace.stdout == ""
+    #   environment:
+    #     KUBECONFIG: /vagrant/playbooks/k3s.yaml
 
     - name: Check if Helm release exists
-      shell: helm list -n monitoring | grep myprom || true
+      # shell: helm list -n monitoring | grep myprom || true
+      shell: helm list | grep myprom || true
       register: helm_release_check
       ignore_errors: true
       environment:
@@ -75,12 +76,12 @@
     
     - name: Install Prometheus and Grafana
       shell: |
-        kubectl apply -f /vagrant/playbooks/grafana-config.yaml -n monitoring 
-        kubectl apply -f /vagrant/monitoring/monitoring.yml -n monitoring
-        if helm list -n monitoring | grep myprom; then
-          helm upgrade myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
+        kubectl apply -f /vagrant/playbooks/grafana-config.yaml
+        kubectl apply -f /vagrant/monitoring/monitoring.yml
+        if helm list | grep myprom; then
+          helm upgrade myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
         else
-          helm install myprom prom-repo/kube-prometheus-stack --namespace monitoring -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
+          helm install myprom prom-repo/kube-prometheus-stack -f /vagrant/kubernetes/grafana-value.yml -f /vagrant/kubernetes/prometheus-value.yml
         fi
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
@@ -109,7 +110,8 @@
         istioctl install --set profile=demo -y
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
-        
+      async: 1800
+      poll: 30   
     - name: Install istio addons
       shell: |
         cd {{ ISTIO_DIR }}
@@ -118,6 +120,8 @@
         kubectl apply -f ./samples/addons/kiali.yaml
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
+      async: 1800
+      poll: 30
 
 
 - name: Install k3s on worker nodes
@@ -143,3 +147,7 @@
         kubectl apply -f /vagrant/kubernetes/model-service.yml
         kubectl apply -f /vagrant/kubernetes/app.yml
         kubectl apply -f /vagrant/kubernetes/istio.yml
+      environment:
+        KUBECONFIG: /vagrant/playbooks/k3s.yaml
+      async: 1800
+      poll: 30
