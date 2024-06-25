@@ -547,11 +547,11 @@ data:
     "datasource": "Prometheus",
     "targets": [
     {
-    "expr": "avg(phishing_rate{pod=~\".*model-v1.*\"})",
+    "expr": "avg(model_phishing_rate{pod=~\".*model-v1.*\"})",
     "legendFormat": "Phishing Rate (v1)"
     },
     {
-    "expr": "avg(phishing_rate{pod=~\".*model-v2.*\"})",
+    "expr": "avg(model_phishing_rate{pod=~\".*model-v2.*\"})",
     "legendFormat": "Phishing Rate (v2)"
     }
     ],
