@@ -2,20 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: model-v1
-  labels:
-    app: model
-    version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: model
-      version: v1
   template:
     metadata:
-      labels:
-        app: model
-        version: v1
+      labels: { app: model,  version: v1 }
     spec:
       containers:
       - name: model
@@ -38,20 +32,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: model-v2
-  labels:
-    app: model
-    version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: model
-      version: v2
   template:
     metadata:
-      labels:
-        app: model
-        version: v2
+      labels: { app: model,  version: v2 }
     spec:
       containers:
       - name: model
@@ -76,7 +64,6 @@ metadata:
   labels:
     app: service-model-monitor
 spec:
-  type: ClusterIP
   selector:
     app: model
   ports:

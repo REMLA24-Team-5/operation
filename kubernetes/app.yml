@@ -59,17 +59,4 @@ spec:
     app: app
   ports:
   - port: 5000
-    targetPort: 5000  
-# ---
-# apiVersion: monitoring.coreos.com/v1
-# kind: ServiceMonitor
-# metadata:
-#   name: app-monitor
-#   labels:
-#     release: app-prometheus
-# spec:
-#   selector:
-#     matchLabels:
-#       app: service-app
-#   endpoints:
-#   - interval: 5s # change once working
+    targetPort: 5000 
