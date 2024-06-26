@@ -117,6 +117,7 @@ The [`lib-version`](https://github.com/REMLA24-Team-5/lib-versino) repository co
 - a GitHub workflow that automatically versions and releases the library in a package registry
 
 ## File structure
+The entire file-structure of the repository including explanations per file can be found below.
 ```
 ├── assets                          -> folder containing supporting asset files
 │   ├── report.pdf                  -> report pdf
