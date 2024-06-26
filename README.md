@@ -32,7 +32,7 @@ export KUBECONFIG=/vagrant/playbooks/k3s.yaml
 Now you can use the `kubectl` command as you are used to. The following commands can be used to investigate the cluster
 - `kubectl get nodes` to list all running nodes, this should be the control-plane and the number of worker nodes that you configured
 - `kubectl get pods` to list all running pods in the default namespace, to see all pods run include the `--all-namespaces` flag
-- `kubectl get services` to list all services, this will be used in the section belwo
+- `kubectl get services` to list all services, this will be used in the section below
 
 These are the most basic ones, a lot more information can be extracted from the cluster. For an overview of all commands, please visit [this](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
  page.
@@ -78,7 +78,7 @@ Notice that the metrics appear twice for every category, this is because of the 
 ## Istio Implementations
 With the use of Istio we run two versions of the app by default. The difference between these versions is the color of the buttons when the user is asked about his/her opinion on whether a URL is phishing or not. Metrics for both these app versions are collected and can be seen when visiting the `Custom Metrics Dashboard`.
 
-Additionally a shadow launch for the `model-service` is implemented, where two different versions of the trained model are used. All requests send to the original model are also send to the newly trained model. The `Custom Metrics Dashboard for Shadow Launch` can be used to compare the model performances and assess whether the new model can be used. A part of the dashboard for this looks as follows:
+Additionally a shadow launch for the `model-service` is implemented, where two different versions of the trained model are used. All requests sent to the original model are also sent to the newly trained model. The `Custom Metrics Dashboard for Shadow Launch` can be used to compare the model performances and assess whether the new model can be used. A part of the dashboard for this looks as follows:
 
 ![Grafana Dashboard for Shadow Launch](assets/model-versions.jpeg)
 
