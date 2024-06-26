@@ -4,8 +4,7 @@ This repository contains all information about the project progress for team 5 o
 First the steps to run the application are listed, then the project contents are explained in a bit more detail.
 
 ## Running the application
-
-To run using Docker, login to github package repository and compose containers:
+To run using Docker, login to github package repository and compose containers, see the commands below. The `compose.yml` file includes a port mapping for both the `model-service` and `app`. Also an environment variable is present for the URL where the model can be queried. A volume mapping could be easily implemented (see [here](https://docs.docker.com/storage/volumes/)) for the model and/or training data, however currently this is not done since the data is downloaded from Google Drive.
 
 ```
 docker login https://ghcr.io
