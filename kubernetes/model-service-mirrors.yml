@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model
+  template:
+    metadata:
+      labels: { app: model,  version: v1 }
+    spec:
+      containers:
+      - name: model
+        image: ghcr.io/remla24-team-5/model-service:v0.1.19
+
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /home/resources
+          name: model-volume
+      volumes:
+      - name: model-volume
+        hostPath:
+          path: /vagrant/volume
+          type: Directory
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model
+  template:
+    metadata:
+      labels: { app: model,  version: v2 }
+    spec:
+      containers:
+      - name: model
+        image: ghcr.io/remla24-team-5/model-service:v0.1.20
+
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /home/resources
+          name: model-volume
+      volumes:
+      - name: model-volume
+        hostPath:
+          path: /vagrant/volume
+          type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-model
+  labels:
+    app: service-model-monitor
+spec:
+  selector:
+    app: model
+  ports:
+    - port: 8000
+      targetPort: 8000

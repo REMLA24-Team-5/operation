@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: model-rules
+spec:
+  host: service-model
+  subsets:
+  - name: v1
+    labels: { version: v1 }
+  - name: v2
+    labels: { version: v2 }
+
+---
+
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: model-virtual-service
+spec:
+  hosts:
+  - service-model
+  http:
+  - route:
+    - destination:
+        host: service-model
+        subset: v1
+      weight: 100
+    mirror:
+      host: service-model
+      subset: v2
+    mirrorPercentage:
+      value: 100.0

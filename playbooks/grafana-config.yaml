@@ -458,3 +458,126 @@ data:
       "sharedCrosshair": false,
       "links": []
     }
+  custom-dashboard-shadow-launch.json: |
+    {
+    "id": null,
+    "title": "Custom Metrics Dashboard for Shadow Launch",
+    "tags": [],
+    "timezone": "browser",
+    "schemaVersion": 21,
+    "version": 1,
+    "refresh": "5s",
+    "panels": [
+    {
+    "id": 4,
+    "type": "graph",
+    "title": "Model Request Count Shadow Launch",
+    "datasource": "Prometheus",
+    "targets": [
+    {
+    "expr": "rate(requests_to_model_total{pod=~\".*model-v1.*\"}[5m])",
+    "legendFormat": "Model Requests Rate (v1)"
+    },
+    {
+    "expr": "rate(requests_to_model_total{pod=~\".*model-v2.*\"}[5m])",
+    "legendFormat": "Model Requests Rate (v2)"
+    }
+    ],
+    "gridPos": {
+    "x": 12,
+    "y": 9,
+    "w": 12,
+    "h": 9
+    }
+    },
+    {
+    "id": 5,
+    "type": "graph",
+    "title": "Phishing Count Shadow Launch",
+    "datasource": "Prometheus",
+    "targets": [
+    {
+    "expr": "rate(model_phishing_detection_total{pod=~\".*model-v1.*\"}[5m])",
+    "legendFormat": "Phishing Detections Rate (v1)"
+    },
+    {
+    "expr": "rate(model_phishing_detection_total{pod=~\".*model-v2.*\"}[5m])",
+    "legendFormat": "Phishing Detections Rate (v2)"
+    }
+    ],
+    "gridPos": {
+    "x": 0,
+    "y": 18,
+    "w": 12,
+    "h": 9
+    }
+    },
+    {
+    "id": 9,
+    "type": "gauge",
+    "title": "Phishing Rate Shadow Launch",
+    "datasource": "Prometheus",
+    "targets": [
+    {
+    "expr": "model_phishing_rate{pod=~\".*model-v1.*\"}",
+    "legendFormat": "Phishing Rate (v1)"
+    },
+    {
+    "expr": "model_phishing_rate{pod=~\".*model-v2.*\"}",
+    "legendFormat": "Phishing Rate (v2)"
+    }
+    ],
+    "gridPos": {
+    "x": 0,
+    "y": 36,
+    "w": 12,
+    "h": 9
+    },
+    "fieldConfig": {
+    "defaults": {
+    "min": 0,
+    "max": 100
+    }
+    }
+    },
+    {
+    "id": 12,
+    "type": "gauge",
+    "title": "Average Phishing Rate Shadow Launch",
+    "datasource": "Prometheus",
+    "targets": [
+    {
+    "expr": "avg(model_phishing_rate{pod=~\".*model-v1.*\"})",
+    "legendFormat": "Phishing Rate (v1)"
+    },
+    {
+    "expr": "avg(model_phishing_rate{pod=~\".*model-v2.*\"})",
+    "legendFormat": "Phishing Rate (v2)"
+    }
+    ],
+    "gridPos": {
+    "x": 12,
+    "y": 45,
+    "w": 12,
+    "h": 9
+    },
+    "fieldConfig": {
+    "defaults": {
+    "min": 0,
+    "max": 100
+    }
+    }
+    }
+    ],
+    "time": {
+    "from": "now-1h",
+    "to": "now"
+    },
+    "annotations": {
+    "list": []
+    },
+    "editable": true,
+    "hideControls": false,
+    "sharedCrosshair": false,
+    "links": []
+    }

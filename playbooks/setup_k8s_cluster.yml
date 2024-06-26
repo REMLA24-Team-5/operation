@@ -60,7 +60,7 @@
       ignore_errors: true
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
-    
+
     - name: Install Prometheus and Grafana
       shell: |
         kubectl apply -f /vagrant/playbooks/grafana-config.yaml
@@ -77,7 +77,7 @@
   hosts: controller
   become: yes
   tasks:
-    - name: Curl istio 
+    - name: Curl istio
       shell: |
         curl -L https://istio.io/downloadIstio | sh -
 
@@ -95,10 +95,10 @@
         cd {{ ISTIO_DIR }}
         export PATH=$PWD/bin:$PATH
         istioctl install --set profile=demo -y
-      environment:  
+      environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
       async: 1800
-      poll: 30   
+      poll: 30
     - name: Install istio addons
       shell: |
         cd {{ ISTIO_DIR }}
@@ -110,6 +110,12 @@
       async: 1800
       poll: 30
 
+- name: Setup Istio sidecar injection
+  hosts: controller
+  tasks:
+    - name: Label the default namespace for Istio injection
+      shell: kubectl label namespace default istio-injection=enabled --overwrite
+      register: label_output
 
 - name: Install k3s on worker nodes
   hosts: workers
@@ -131,11 +137,14 @@
     - name: Apply Kubernetes yml files
       shell: |
         kubectl apply -f /vagrant/kubernetes/environment.yml
-        kubectl apply -f /vagrant/kubernetes/model-service.yml
+        kubectl apply -f /vagrant/kubernetes/model-service-mirrors.yml
         kubectl apply -f /vagrant/kubernetes/app.yml
         kubectl apply -f /vagrant/monitoring/monitoring.yml
         kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
         kubectl apply -f /vagrant/kubernetes/istio.yml
+
+        kubectl apply -f /vagrant/kubernetes/istio-shadow-launch.yml
+        kubectl apply -f /vagrant/monitoring/monitoring-mirrors.yml
       environment:
         KUBECONFIG: /vagrant/playbooks/k3s.yaml
       async: 1800
