@@ -126,19 +126,25 @@ The entire file-structure of the repository including explanations per file can 
 ```
 ├── assets                          -> folder containing supporting asset files
 │   ├── report.pdf                  -> report pdf
-│   ├── alertmanager.jpeg           -> image used in README
-│   ├── architecture.png            -> image used in README
-│   ├── grafana-port.png            -> image used in README
-│   └── prometheus-port.png         -> image used in README
+│   ├── alertmanager.jpeg           -> image showing AlertManager
+│   ├── app-versions-2.jpeg         -> image showing both app versions in Grafana   
+│   ├── architecture.png            -> image showing general project architecture
+│   ├── grafana-port.png            -> image showing Grafana port to use
+│   ├── model-versions.jpeg         -> image showing both model versions in Grafana
+│   ├── prometheus-port.png         -> image showing Prometheus port to use
+│   └── prometheus-requests.jpeg    -> image showing requests on Prometheus dashboard
 ├── kubernetes                      -> folder containing all Kubernetes deployment files
 │   ├── app.yml                     -> deployment file for the app
 │   ├── environment.yml             -> ConfigMap to store the model-service URL
 │   ├── grafana-value.yml           -> contains default settings for the Grafana Dashboard
 │   ├── ingress.yml                 -> deployment file for an ingress
+│   ├── istio-shadow-launch.yml     -> defines Istio shadow launch for two model versions
 │   ├── istio.yml                   -> defines Istio objects for different app versions
-│   ├── model-service.yml           -> deployment file for model-service
+│   ├── model-service-mirrors.yml   -> deployment when having two model versions
+│   ├── model-service.yml           -> deployment file for single model-service
 │   └── prometheus-value.yml        -> contains default settings for Prometheus
 ├── monitoring                      -> folder containing monitoring specific yaml files
+│   ├── monitoring-mirrors.yml      -> used to start a ServiceMonitor when having mirrored models
 │   ├── monitoring.yml              -> used to start a ServiceMonitor
 │   └── prometheus_rule.yml         -> defines a PrometheusRule to send alerts
 ├── operation
