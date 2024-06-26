@@ -49,7 +49,11 @@ You should look for the Prometheus port, which you can use to enter Prometheus u
 
 ![prometheus-port](assets/prometheus-port.png)
 
-Inside Prometheus you can query app specific metrics such as ```page_requests_total```. Prometheus is also setup with an Alermanager, such that an alert is raised when more than 15 request are received for the last two mintues. The message that pops up looks as follows:
+Inside Prometheus you can query app specific metrics such as `requests_to_model_total`. Selecting this metric in the Prometheus page allows you to see its value progress over time, as can be seen in the figure below (note there are two models, this will be explained in the Istio section).
+
+![Prometheus page](assets/prometheus-requests.jpeg)
+
+Prometheus is also setup with an Alermanager, such that an alert is raised when more than 15 request are received for the last two mintues. The message that pops up looks as follows:
 
 ![Alert Manager](assets/alertmanager.jpeg)
 
@@ -65,18 +69,20 @@ You should look for the grafana port, which you can use to enter Grafana using t
 
 ![grafana-port](assets/grafana-port.png)
 
-You will then be redirected to a login page, where the username and password are both `admin`. Inside Grafana you can create new dashboards or look at our `Custom Metrics Dashboard`, which is loaded from a json file. The Dashboard looks as follows:
+You will then be redirected to a login page, where the username and password are both `admin`. Inside Grafana you can create new dashboards or look at our `Custom Metrics Dashboard`, which is loaded from a json file. A part of the Dashboard looks as follows:
 
-![Grafana Dashboard](assets/grafana.jpeg)
+![Grafana Dashboard](assets/app-versions-2.jpeg)
 
 Notice that the metrics appear twice for every category, this is because of the two versions of the app being up.
 
 ## Istio Implementations
 With the use of Istio we run two versions of the app by default. The difference between these versions is the color of the buttons when the user is asked about his/her opinion on whether a URL is phishing or not. Metrics for both these app versions are collected and can be seen when visiting the `Custom Metrics Dashboard`.
 
-Additionally a shadow launch for the `model-service` is implemented, where two different versions of the trained model are used. All requests send to the original model are also send to the newly trained model. The `Custom Metrics Dashboard for Shadow Launch` can be used to compare the model performances and assess whether the new model can be used. The dashboard for this looks as follows:
+Additionally a shadow launch for the `model-service` is implemented, where two different versions of the trained model are used. All requests send to the original model are also send to the newly trained model. The `Custom Metrics Dashboard for Shadow Launch` can be used to compare the model performances and assess whether the new model can be used. A part of the dashboard for this looks as follows:
 
-![Grafana Dashboard for Shadow Launch](assets/grafana-models.jpeg)
+![Grafana Dashboard for Shadow Launch](assets/model-versions.jpeg)
+
+In the figure you can clearly see the two different versions of the model (v1 and v2).
 
 ## The project
 The project concerns the training and deployment of a Phishing URL detector as a web application. The project consists of multiple repositories, each with their own focus, working together to create the full application. The architecture looks as follows:
