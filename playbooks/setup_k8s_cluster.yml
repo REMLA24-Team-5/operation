@@ -142,7 +142,7 @@
         kubectl apply -f /vagrant/monitoring/monitoring.yml
         kubectl apply -f /vagrant/monitoring/prometheus_rule.yml
         kubectl apply -f /vagrant/kubernetes/istio.yml
-
+        kubectl apply -f /vagrant/kubernetes/rate-limit.yml
         kubectl apply -f /vagrant/kubernetes/istio-shadow-launch.yml
         kubectl apply -f /vagrant/monitoring/monitoring-mirrors.yml
       environment:

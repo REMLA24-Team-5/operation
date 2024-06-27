@@ -75,13 +75,24 @@ You will then be redirected to a login page, where the username and password are
 Notice that the metrics appear twice for every category, this is because of the two versions of the app being up.
 
 ## Istio Implementations
-With the use of Istio we run two versions of the app by default. The difference between these versions is the color of the buttons when the user is asked about his/her opinion on whether a URL is phishing or not. Metrics for both these app versions are collected and can be seen when visiting the `Custom Metrics Dashboard`.
+With the use of Istio we run two versions of the app by default. The difference between these versions is the color of the buttons when the user is asked about his/her opinion on whether a URL is phishing or not. Metrics for both these app versions are collected and can be seen when visiting the `Custom Metrics Dashboard`. Using headers, we were able stabilize the subset of requests that are redirected to the new service. The usual split between the two versions is 90/10, but using headers we are able to consistently send test users our test version of the app.
+![curl normal users](assets/curl_normal.png)
+![result normal](assets/normal_result.png)
+
+![curl test users](assets/curl_test.png)
+![result test](assets/test_result.png)
 
 Additionally a shadow launch for the `model-service` is implemented, where two different versions of the trained model are used. All requests sent to the original model are also sent to the newly trained model. The `Custom Metrics Dashboard for Shadow Launch` can be used to compare the model performances and assess whether the new model can be used. A part of the dashboard for this looks as follows:
 
 ![Grafana Dashboard for Shadow Launch](assets/model-versions.jpeg)
 
 In the figure you can clearly see the two different versions of the model (v1 and v2).
+
+Moreover, we have also implemented user-based rate limiting. As we can see in the images below, if we send more than 10 requests being authorized as user `Bob`, we get `TOO_MANY_REQUESTS` for all consecutive requests in that minute. 
+
+![Rate limit Bob](assets/rate_limit_bob.png)
+However, this does not prevent user `Nick` to send up to 10 requests per minute. Although after that he is also limited. We also have a global rate limit which is currently set to 100 requests per minute in total.
+![Rate limit Nick](assets/rate_limit_nick.png)
 
 ## The project
 The project concerns the training and deployment of a Phishing URL detector as a web application. The project consists of multiple repositories, each with their own focus, working together to create the full application. The architecture looks as follows:
