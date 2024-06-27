@@ -146,7 +146,6 @@ The entire file structure of the repository including explanations per file can 
 │   ├── monitoring-mirrors.yml      -> used to start a ServiceMonitor when having mirrored models
 │   ├── monitoring.yml              -> used to start a ServiceMonitor
 │   └── prometheus_rule.yml         -> defines a PrometheusRule to send alerts
-├── operation
 ├── playbooks                       -> folder containing playbooks for provisioning
 │   ├── grafana-config.yaml         -> defines the custom dashboards
 │   └── setup_k8s_cluster.yml       -> playbook that sets up the whole Kubernetes cluster
