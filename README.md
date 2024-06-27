@@ -134,42 +134,43 @@ The [`lib-version`](https://github.com/REMLA24-Team-5/lib-versino) repository co
 ## File structure
 The entire file structure of the repository including explanations per file can be found below.
 ```
-├── assets                          -> folder containing supporting asset files
-│   ├── report.pdf                  -> report pdf
-│   ├── alertmanager.jpeg           -> image showing AlertManager
-│   ├── app-versions-2.jpeg         -> image showing both app versions in Grafana   
-│   ├── architecture.png            -> image showing general project architecture
-│   ├── grafana-port.png            -> image showing Grafana port to use
-│   ├── model-versions.jpeg         -> image showing both model versions in Grafana
-│   ├── prometheus-port.png         -> image showing Prometheus port to use
-│   └── prometheus-requests.jpeg    -> image showing requests on Prometheus dashboard
-├── kubernetes                      -> folder containing all Kubernetes deployment files
-│   ├── app.yml                     -> deployment file for the app
-│   ├── environment.yml             -> ConfigMap to store the model-service URL
-│   ├── grafana-value.yml           -> contains default settings for the Grafana Dashboard
-│   ├── ingress.yml                 -> deployment file for an ingress
-│   ├── istio-shadow-launch.yml     -> defines Istio shadow launch for two model versions
-│   ├── istio.yml                   -> defines Istio objects for different app versions
-│   ├── model-service-mirrors.yml   -> deployment when having two model versions
-│   ├── model-service.yml           -> deployment file for single model-service
-│   └── prometheus-value.yml        -> contains default settings for Prometheus
-├── monitoring                      -> folder containing monitoring specific yaml files
-│   ├── monitoring-mirrors.yml      -> used to start a ServiceMonitor when having mirrored models
-│   ├── monitoring.yml              -> used to start a ServiceMonitor
-│   └── prometheus_rule.yml         -> defines a PrometheusRule to send alerts
-├── playbooks                       -> folder containing playbooks for provisioning
-│   ├── grafana-config.yaml         -> defines the custom dashboards
-│   └── setup_k8s_cluster.yml       -> playbook that sets up the whole Kubernetes cluster
-├── volume                          -> volume folder containing necessary files
-│   ├── model-v1.joblib             -> version one of the model
-│   ├── model-v2.joblib             -> version two of the model
-│   ├── test.txt                    -> file for model testing
-│   ├── train.txt                   -> file for model trainig
-│   └── val.txt                     -> file for model validation
-├── .gitignore                      -> contains files which Git should ignore
-├── ACTIVITY.md                     -> lists team member's activity per assignment
-├── README.md                       -> general README of the repository
-├── Vagrantfile                     -> used to define and start VMs
-├── compose.yml                     -> Docker compose file to start the application
-└── review.md                       -> file containig progress for each rubric
+├── assets                              -> folder containing supporting asset files
+│   ├── REMLA24-team5-presentation.pdf  -> presentation pdf
+│   ├── REMLA24-team5-report.pdf        -> report pdf
+│   ├── alertmanager.jpeg               -> image showing AlertManager
+│   ├── app-versions-2.jpeg             -> image showing both app versions in Grafana   
+│   ├── architecture.png                -> image showing general project architecture
+│   ├── grafana-port.png                -> image showing Grafana port to use
+│   ├── model-versions.jpeg             -> image showing both model versions in Grafana
+│   ├── prometheus-port.png             -> image showing Prometheus port to use
+│   └── prometheus-requests.jpeg        -> image showing requests on Prometheus dashboard
+├── kubernetes                          -> folder containing all Kubernetes deployment files
+│   ├── app.yml                         -> deployment file for the app
+│   ├── environment.yml                 -> ConfigMap to store the model-service URL
+│   ├── grafana-value.yml               -> contains default settings for the Grafana Dashboard
+│   ├── ingress.yml                     -> deployment file for an ingress
+│   ├── istio-shadow-launch.yml         -> defines Istio shadow launch for two model versions
+│   ├── istio.yml                       -> defines Istio objects for different app versions
+│   ├── model-service-mirrors.yml       -> deployment when having two model versions
+│   ├── model-service.yml               -> deployment file for single model-service
+│   └── prometheus-value.yml            -> contains default settings for Prometheus
+├── monitoring                          -> folder containing monitoring specific yaml files
+│   ├── monitoring-mirrors.yml          -> used to start a ServiceMonitor when having mirrored models
+│   ├── monitoring.yml                  -> used to start a ServiceMonitor
+│   └── prometheus_rule.yml             -> defines a PrometheusRule to send alerts
+├── playbooks                           -> folder containing playbooks for provisioning
+│   ├── grafana-config.yaml             -> defines the custom dashboards
+│   └── setup_k8s_cluster.yml           -> playbook that sets up the whole Kubernetes cluster
+├── volume                              -> volume folder containing necessary files
+│   ├── model-v1.joblib                 -> version one of the model
+│   ├── model-v2.joblib                 -> version two of the model
+│   ├── test.txt                        -> file for model testing
+│   ├── train.txt                       -> file for model trainig
+│   └── val.txt                         -> file for model validation
+├── .gitignore                          -> contains files which Git should ignore
+├── ACTIVITY.md                         -> lists team member's activity per assignment
+├── README.md                           -> general README of the repository
+├── Vagrantfile                         -> used to define and start VMs
+├── compose.yml                         -> Docker compose file to start the application
+└── review.md                           -> file containig progress for each rubric
 ```
