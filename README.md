@@ -1,7 +1,7 @@
 # Operation repository
 This repository contains all information about the project progress for team 5 of the REMLA course, including PR's per person in `ACTIVITY.md` and progress for each assignment in `review.md`. The latter file lists all the things that have been implemented according to the rubric per assignment.
 
-First the steps to run the application are listed, then the project contents are explained in a bit more detail.
+First the steps to run the application and view Prometheus/Grafana dashboards are listed, then the project contents are explained in a bit more detail. At the end there is an overview of all files in the repository as well.
 
 ## Running the application
 To run using Docker, login to github package repository and compose containers, see the commands below. The `compose.yml` file includes a port mapping for both the `model-service` and `app`. Also an environment variable is present for the URL where the model can be queried. A volume mapping could be easily implemented (see [here](https://docs.docker.com/storage/volumes/)) for the model and/or training data, however currently this is not done since the data is downloaded from Google Drive.
@@ -23,18 +23,17 @@ The number of worker nodes can be specified at the top of the Vagrantfile (line 
 export KUBECONFIG=./playbooks/k3s.yaml
 ```
 
-or this command when in the cluster (i.e. when ssh-ed into a node)
+or this command when in the cluster (i.e. when ssh-ed into a node):
 ```
 export KUBECONFIG=/vagrant/playbooks/k3s.yaml
 ```
 
-Now you can use the `kubectl` command as you are used to. The following commands can be used to investigate the cluster
+Now you can use the `kubectl` command as you are used to. The following commands can be used to investigate the cluster:
 - `kubectl get nodes` to list all running nodes, this should be the control-plane and the number of worker nodes that you configured
 - `kubectl get pods` to list all running pods in the default namespace, to see all pods run include the `--all-namespaces` flag
 - `kubectl get services` to list all services, this will be used in the section below
 
-These are the most basic ones, a lot more information can be extracted from the cluster. For an overview of all commands, please visit [this](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
- page.
+These are the most basic ones, a lot more information can be extracted from the cluster. For an overview of all commands, please visit [this](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands) page.
 
 ## Prometheus Dashboard
 The application is monitored through many metrics. To see these metrics we need to open Prometheus. For this first export the KUBECONFIG (if not done already) and the list the services:
@@ -122,7 +121,7 @@ The [`lib-version`](https://github.com/REMLA24-Team-5/lib-versino) repository co
 - a GitHub workflow that automatically versions and releases the library in a package registry
 
 ## File structure
-The entire file-structure of the repository including explanations per file can be found below.
+The entire file structure of the repository including explanations per file can be found below.
 ```
 ├── assets                          -> folder containing supporting asset files
 │   ├── report.pdf                  -> report pdf
